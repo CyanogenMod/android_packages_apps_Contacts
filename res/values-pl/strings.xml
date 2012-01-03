@@ -41,6 +41,7 @@
     <string name="menu_removeStar" msgid="5844227078364227030">"Usuń z ulubionych"</string>
     <string name="menu_editContact" msgid="3452858480713561396">"Edytuj kontakt"</string>
     <string name="menu_deleteContact" msgid="1916555454274101750">"Usuń kontakt"</string>
+    <string name="menu_contactHistory">Zobacz historię</string>
     <string name="menu_call" msgid="3992595586042260618">"Zadzwoń do kontaktu"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Wyślij tekst do kontaktu"</string>
     <string name="menu_sendEmail" msgid="7293508859242926187">"Wyślij e-mail"</string>
@@ -405,7 +406,7 @@
     <string name="recent_calls_clear_missed">Nieodebrane</string>
     <string name="alert_clear_call_log_title">Wyczyść rejestr rozmów</string>
     <string name="alert_clear_call_log_message">Czy napewno chcesz usunąć cały rejestr rozmów?</string>
-    <string name="alert_clear_cl_all_incoming">Czy napewno chcesz usunąć rejetr połączeń przychodzących?</string>
+    <string name="alert_clear_cl_all_incoming">Czy napewno chcesz usunąć rejestr połączeń przychodzących?</string>
     <string name="alert_clear_cl_all_outgoing">Czy napewno chcesz usunąć rejestr połączeń wychodzących?</string>
     <string name="alert_clear_cl_all_missed">Czy napewno chcesz usunąć rejestr połączeń nieodebranych?</string>
     
@@ -446,6 +447,9 @@
     <string name="title_cl_ask_before_clear">Zapytaj przed wyczyszczeniem</string>
     <string name="summaryon_cl_ask_before_clear">Zapytaj przed wyczyszczeniem rejestru rozmów</string>
     <string name="summaryoff_cl_ask_before_clear">Rejestr rozmów będzie wyczyszczony bez potwierdzenia</string>
+    <string name="title_cl_show_groups">Pokaż grupy</string>
+    <string name="summaryon_cl_show_groups">Pokazuje grupy w rejestrze rozmów</string>
+    <string name="summaryoff_cl_show_groups">Nie pokazuje grup w rejestrze rozmów</string>
     
     <!-- Preferences: Contacts -->
     <string name="title_contacts_show_pic">Pokaż obrazek kontaktu</string>

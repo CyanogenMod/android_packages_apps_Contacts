@@ -41,6 +41,7 @@
     <string name="menu_removeStar" msgid="5844227078364227030">"Ta bort från Favoriter"</string>
     <string name="menu_editContact" msgid="3452858480713561396">"Redigera kontakt"</string>
     <string name="menu_deleteContact" msgid="1916555454274101750">"Ta bort kontakt"</string>
+    <string name="menu_contactHistory">Se samtalshistorik</string>
     <string name="menu_call" msgid="3992595586042260618">"Ring upp kontakt"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Skicka SMS till kontakt"</string>
     <string name="menu_sendEmail" msgid="7293508859242926187">"Skicka e-post"</string>
@@ -451,6 +452,9 @@
     <string name="title_cl_ask_before_clear">Fråga innan rensning</string>
     <string name="summaryon_cl_ask_before_clear">Fråga innan samtalshistoriken rensas</string>
     <string name="summaryoff_cl_ask_before_clear">Samtalshistoriken kommer rensas utan bekräftelse</string>
+    <string name="title_cl_show_groups">Visa grupper</string>
+    <string name="summaryon_cl_show_groups">Visa grupper i samtalshistoriken</string>
+    <string name="summaryoff_cl_show_groups">Visa inte grupper i samtalshistoriken</string>
 
     <!-- Preferences: Contacts -->
     <string name="title_contacts_show_pic">Visa kontaktbilder</string>
