@@ -171,6 +171,8 @@ public class RecentCallsListActivity extends ListActivity
     private QueryHandler mQueryHandler;
     String mVoiceMailNumber;
     
+    private String query = null;
+
     //Wysie
     private MenuItem mPreferences;    
     private SharedPreferences ePrefs;
@@ -188,6 +190,7 @@ public class RecentCallsListActivity extends ListActivity
     private static boolean mDisplayPhotos;
     private static boolean isQuickContact;
     private static boolean showDialButton;
+    private static boolean showGroups;
 
     private boolean mScrollToTop;
     private static final String INSERT_BLACKLIST = "com.android.phone.INSERT_BLACKLIST";
@@ -594,7 +597,8 @@ public class RecentCallsListActivity extends ListActivity
         protected void addGroups(Cursor cursor) {
 
             int count = cursor.getCount();
-            if (count == 0) {
+            if (count == 0 || query != null || !showGroups) {
+                query = null;
                 return;
             }
 
@@ -1061,6 +1065,22 @@ public class RecentCallsListActivity extends ListActivity
 
         // Reset locale-based formatting cache
         sFormattingType = FORMATTING_TYPE_INVALID;
+
+        this.onNewIntent(getIntent());
+    }
+
+    @Override
+    public void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+        if (intent.getExtras().getString("caller_name") == null
+                && intent.getExtras().getString("number") == null) {
+            return;
+        } else if (intent.getExtras().getString("caller_name") != null) {
+            query = Calls.CACHED_NAME + "='" + intent.getExtras().getString("caller_name") + "'";
+        } else if (intent.getExtras().getString("number") != null) {
+            query = Calls.NUMBER + "='" + intent.getExtras().getString("number") + "'";
+        }
     }
 
     @Override
@@ -1086,6 +1106,7 @@ public class RecentCallsListActivity extends ListActivity
             showSeconds = ePrefs.getBoolean("cl_show_seconds", true);
             mDisplayPhotos = ePrefs.getBoolean("cl_show_pic", true);
             showDialButton = ePrefs.getBoolean("cl_show_dial_button", false);
+            showGroups = ePrefs.getBoolean("cl_show_groups", true);
             
             super.onResume();
 
@@ -1186,7 +1207,7 @@ public class RecentCallsListActivity extends ListActivity
         // Cancel any pending queries
         mQueryHandler.cancelOperation(QUERY_TOKEN);
         mQueryHandler.startQuery(QUERY_TOKEN, null, Calls.CONTENT_URI,
-                CALL_LOG_PROJECTION, null, null, Calls.DEFAULT_SORT_ORDER);
+                CALL_LOG_PROJECTION, query, null, Calls.DEFAULT_SORT_ORDER);
     }
 
     @Override
@@ -1289,6 +1310,16 @@ public class RecentCallsListActivity extends ListActivity
                     ContentUris.withAppendedId(Contacts.CONTENT_URI, info.personId));
             StickyTabs.setTab(intent, getIntent());
             menu.add(0, 0, 0, R.string.menu_viewContact).setIntent(intent);
+
+            Intent viewRecentCallsIntent = new Intent("com.android.phone.action.RECENT_CALLS");
+            viewRecentCallsIntent.putExtra("caller_name", info.name);
+            menu.add(0, 0, 0, getString(R.string.menu_contactHistory)).setIntent(
+                    viewRecentCallsIntent);
+        } else {
+            Intent viewRecentCallsIntent = new Intent("com.android.phone.action.RECENT_CALLS");
+            viewRecentCallsIntent.putExtra("number", cursor.getString(NUMBER_COLUMN_INDEX));
+            menu.add(0, 0, 0, getString(R.string.menu_contactHistory)).setIntent(
+                    viewRecentCallsIntent);
         }
 
         if (numberUri != null && !isVoicemail && !isSipNumber) {
