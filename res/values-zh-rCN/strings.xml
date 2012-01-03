@@ -41,6 +41,8 @@
     <string name="menu_removeStar" msgid="5844227078364227030">"从收藏中删除"</string>
     <string name="menu_editContact" msgid="3452858480713561396">"编辑联系人"</string>
     <string name="menu_deleteContact" msgid="1916555454274101750">"删除联系人"</string>
+    <!-- Menu item used to view the call history for a specific contact -->
+    <string name="menu_contactHistory">查看联系人历史记录</string>
     <string name="menu_call" msgid="3992595586042260618">"呼叫联系人"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"向联系人发送短信"</string>
     <string name="menu_sendEmail" msgid="7293508859242926187">"发送电子邮件"</string>
@@ -448,6 +450,9 @@
     <string name="title_cl_ask_before_clear">清除时需要确认</string>
     <string name="summaryon_cl_ask_before_clear">在清除通话记录时需要确认</string>
     <string name="summaryoff_cl_ask_before_clear">在清除通话记录时不需确认</string>
+    <string name="title_cl_show_groups">显示分组</string>
+    <string name="summaryon_cl_show_groups">在拨号日志中显示分组</string>
+    <string name="summaryoff_cl_show_groups">在拨号日志中隐藏分组</string>
  
     <!-- Preferences: Contacts -->
     <string name="title_contacts_show_pic">显示联系人照片</string>

@@ -99,6 +99,9 @@
     <!-- Menu item used to delete a specific contact -->
     <string name="menu_deleteContact">Delete contact</string>
 
+    <!-- Menu item used to view the call history for a specific contact -->
+    <string name="menu_contactHistory">View contact history</string>
+
     <!-- Menu item used to call a specific contact when viewing the details of that contact. -->
     <string name="menu_call">Call contact</string>
 
@@ -1246,6 +1249,9 @@
     <string name="title_cl_ask_before_clear">Ask before clearing</string>
     <string name="summaryon_cl_ask_before_clear">Ask before clearing call log</string>
     <string name="summaryoff_cl_ask_before_clear">Call logs will be cleared without asking</string>
+    <string name="title_cl_show_groups">Show groups</string>
+    <string name="summaryon_cl_show_groups">Show groups in call log</string>
+    <string name="summaryoff_cl_show_groups">Hide groups in call log</string>
     
     <!-- Preferences: Contacts -->
     <string name="title_contacts_show_pic">Show contact pictures</string>
