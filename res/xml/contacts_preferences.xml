@@ -119,6 +119,12 @@
             android:dependency="cl_exact_time"
             android:defaultValue="true" />
         <CheckBoxPreference
+            android:key="cl_show_groups"
+            android:title="@string/title_cl_show_groups"
+            android:summaryOn="@string/summaryon_cl_show_groups"
+            android:summaryOff="@string/summaryoff_cl_show_groups"
+            android:defaultValue="true" />
+        <CheckBoxPreference
             android:key="cl_ask_before_clear"
             android:title="@string/title_cl_ask_before_clear"
             android:summaryOn="@string/summaryon_cl_ask_before_clear"
