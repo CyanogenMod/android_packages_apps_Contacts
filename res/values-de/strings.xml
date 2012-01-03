@@ -41,6 +41,7 @@
     <string name="menu_removeStar" msgid="5844227078364227030">"Aus Favoriten entfernen"</string>
     <string name="menu_editContact" msgid="3452858480713561396">"Kontakt bearbeiten"</string>
     <string name="menu_deleteContact" msgid="1916555454274101750">"Kontakt löschen"</string>
+    <string name="menu_contactHistory">Kontakt-Historie anzeigen</string>
     <string name="menu_call" msgid="3992595586042260618">"Kontakt anrufen"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Textnachricht an Kontakt"</string>
     <string name="menu_sendEmail" msgid="7293508859242926187">"E-Mail senden"</string>
@@ -463,6 +464,9 @@
     <string name="title_cl_ask_before_clear">Anrufliste löschen bestätigen</string>
     <string name="summaryon_cl_ask_before_clear">Anrufliste löschen mit Bestätigung</string>
     <string name="summaryoff_cl_ask_before_clear">Anrufliste löschen ohne Bestätigung</string>
+    <string name="title_cl_show_groups">Gruppieren</string>
+    <string name="summaryon_cl_show_groups">Anrufliste nach Kontakt gruppieren</string>
+    <string name="summaryoff_cl_show_groups">Anrufliste nur nach Zeit sortieren</string>
 
     <!-- Preferences: Contacts -->
     <string name="title_contacts_show_pic">Kontaktbilder zeigen</string>
