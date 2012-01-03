@@ -41,6 +41,7 @@
     <string name="menu_removeStar" msgid="5844227078364227030">"Uit favorieten verwijderen"</string>
     <string name="menu_editContact" msgid="3452858480713561396">"Contact bewerken"</string>
     <string name="menu_deleteContact" msgid="1916555454274101750">"Contact verwijderen"</string>
+    <string name="menu_contactHistory">Contact-historie tonen</string>
     <string name="menu_call" msgid="3992595586042260618">"Contact bellen"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Sms\'en naar contact"</string>
     <string name="menu_sendEmail" msgid="7293508859242926187">"E-mail verzenden"</string>
@@ -461,7 +462,10 @@
     <string name="title_cl_ask_before_clear">Vraag voor leeg maken</string>
     <string name="summaryon_cl_ask_before_clear">Vraag bevestiging voor het legen van de gesprekkenlijst</string>
     <string name="summaryoff_cl_ask_before_clear">Gesprekkenlijst wordt geleegd zonder bevestiging</string>
-    
+    <string name="title_cl_show_groups">Toon groepen</string>
+    <string name="summaryon_cl_show_groups">Gesprekkenlijst per contact sorteren</string>
+    <string name="summaryoff_cl_show_groups">Gesprekkenlijst chronologisch sorteren</string>
+
     <!-- Preferences: Contacts -->
     <string name="title_contacts_show_pic">Geef contact foto weer</string>
     <string name="title_contacts_show_dial_button">Geef bel knop weer</string>

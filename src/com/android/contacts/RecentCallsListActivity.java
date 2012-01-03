@@ -152,6 +152,10 @@ public class RecentCallsListActivity extends ListActivity
     static final int PHOTO_ID_COLUMN_INDEX = 5;
     static final int LOOKUP_KEY_COLUMN_INDEX = 6;
 
+    static final String ACTION_SHOW_RECENT_CALLS = "com.android.phone.action.RECENT_CALLS";
+    static final String EXTRA_RECENT_CALLS_NAME = "caller_name";
+    static final String EXTRA_RECENT_CALLS_NUMBER = "number";
+
     private static final int MENU_ITEM_CLEAR_CALL_LOG = 1;
     private static final int MENU_PREFERENCES = 2;
     private static final int MENU_ITEM_CLEAR_ALL = 3;
@@ -171,6 +175,8 @@ public class RecentCallsListActivity extends ListActivity
     private QueryHandler mQueryHandler;
     String mVoiceMailNumber;
     
+    private String query = null;
+
     //Wysie
     private MenuItem mPreferences;    
     private SharedPreferences ePrefs;
@@ -188,6 +194,7 @@ public class RecentCallsListActivity extends ListActivity
     private static boolean mDisplayPhotos;
     private static boolean isQuickContact;
     private static boolean showDialButton;
+    private static boolean showGroups;
 
     private boolean mScrollToTop;
     private static final String INSERT_BLACKLIST = "com.android.phone.INSERT_BLACKLIST";
@@ -594,7 +601,7 @@ public class RecentCallsListActivity extends ListActivity
         protected void addGroups(Cursor cursor) {
 
             int count = cursor.getCount();
-            if (count == 0) {
+            if (count == 0 || query != null || !showGroups) {
                 return;
             }
 
@@ -1061,6 +1068,23 @@ public class RecentCallsListActivity extends ListActivity
 
         // Reset locale-based formatting cache
         sFormattingType = FORMATTING_TYPE_INVALID;
+
+        this.onNewIntent(getIntent());
+    }
+
+    @Override
+    public void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+        Bundle extras = intent.getExtras();
+        final String name = extras.getString(EXTRA_RECENT_CALLS_NAME);
+        final String number = extras.getString(EXTRA_RECENT_CALLS_NUMBER);
+
+        if (name != null) {
+            query = Calls.CACHED_NAME + "='" + name + "'";
+        } else if (number != null) {
+            query = Calls.NUMBER + "='" + number + "'";
+        }
     }
 
     @Override
@@ -1086,6 +1110,7 @@ public class RecentCallsListActivity extends ListActivity
             showSeconds = ePrefs.getBoolean("cl_show_seconds", true);
             mDisplayPhotos = ePrefs.getBoolean("cl_show_pic", true);
             showDialButton = ePrefs.getBoolean("cl_show_dial_button", false);
+            showGroups = ePrefs.getBoolean("cl_show_groups", true);
             
             super.onResume();
 
@@ -1186,7 +1211,7 @@ public class RecentCallsListActivity extends ListActivity
         // Cancel any pending queries
         mQueryHandler.cancelOperation(QUERY_TOKEN);
         mQueryHandler.startQuery(QUERY_TOKEN, null, Calls.CONTENT_URI,
-                CALL_LOG_PROJECTION, null, null, Calls.DEFAULT_SORT_ORDER);
+                CALL_LOG_PROJECTION, query, null, Calls.DEFAULT_SORT_ORDER);
     }
 
     @Override
@@ -1289,6 +1314,21 @@ public class RecentCallsListActivity extends ListActivity
                     ContentUris.withAppendedId(Contacts.CONTENT_URI, info.personId));
             StickyTabs.setTab(intent, getIntent());
             menu.add(0, 0, 0, R.string.menu_viewContact).setIntent(intent);
+
+            if (query == null) {
+                Intent viewRecentCallsIntent = new Intent(ACTION_SHOW_RECENT_CALLS);
+                viewRecentCallsIntent.putExtra(EXTRA_RECENT_CALLS_NAME, info.name);
+                menu.add(0, 0, 0, getString(R.string.menu_contactHistory)).setIntent(
+                        viewRecentCallsIntent);
+            }
+        } else {
+            if (query == null) {
+                Intent viewRecentCallsIntent = new Intent(ACTION_SHOW_RECENT_CALLS);
+                viewRecentCallsIntent.putExtra(EXTRA_RECENT_CALLS_NUMBER,
+                        cursor.getString(NUMBER_COLUMN_INDEX));
+                menu.add(0, 0, 0, getString(R.string.menu_contactHistory)).setIntent(
+                        viewRecentCallsIntent);
+            }
         }
 
         if (numberUri != null && !isVoicemail && !isSipNumber) {
@@ -1592,6 +1632,11 @@ public class RecentCallsListActivity extends ListActivity
     
     private void deleteCallLog(String where, String[] selArgs) {
         try {
+            if (query != null && where != null) {
+                where = where + " AND " + query;
+            } else if (query != null) {
+                where = query;
+            }
             getContentResolver().delete(Calls.CONTENT_URI, where, selArgs);
             // TODO The change notification should do this automatically, but it isn't working
             // right now. Remove this when the change notification is working properly.
