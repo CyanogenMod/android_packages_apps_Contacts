@@ -598,7 +598,6 @@ public class RecentCallsListActivity extends ListActivity
 
             int count = cursor.getCount();
             if (count == 0 || query != null || !showGroups) {
-                query = null;
                 return;
             }
 
@@ -1311,15 +1310,19 @@ public class RecentCallsListActivity extends ListActivity
             StickyTabs.setTab(intent, getIntent());
             menu.add(0, 0, 0, R.string.menu_viewContact).setIntent(intent);
 
-            Intent viewRecentCallsIntent = new Intent("com.android.phone.action.RECENT_CALLS");
-            viewRecentCallsIntent.putExtra("caller_name", info.name);
-            menu.add(0, 0, 0, getString(R.string.menu_contactHistory)).setIntent(
-                    viewRecentCallsIntent);
+            if (query == null) {
+                Intent viewRecentCallsIntent = new Intent("com.android.phone.action.RECENT_CALLS");
+                viewRecentCallsIntent.putExtra("caller_name", info.name);
+                menu.add(0, 0, 0, getString(R.string.menu_contactHistory)).setIntent(
+                        viewRecentCallsIntent);
+            }
         } else {
-            Intent viewRecentCallsIntent = new Intent("com.android.phone.action.RECENT_CALLS");
-            viewRecentCallsIntent.putExtra("number", cursor.getString(NUMBER_COLUMN_INDEX));
-            menu.add(0, 0, 0, getString(R.string.menu_contactHistory)).setIntent(
-                    viewRecentCallsIntent);
+            if (query == null) {
+                Intent viewRecentCallsIntent = new Intent("com.android.phone.action.RECENT_CALLS");
+                viewRecentCallsIntent.putExtra("number", cursor.getString(NUMBER_COLUMN_INDEX));
+                menu.add(0, 0, 0, getString(R.string.menu_contactHistory)).setIntent(
+                        viewRecentCallsIntent);
+            }
         }
 
         if (numberUri != null && !isVoicemail && !isSipNumber) {
@@ -1623,6 +1626,9 @@ public class RecentCallsListActivity extends ListActivity
     
     private void deleteCallLog(String where, String[] selArgs) {
         try {
+            if (query != null) {
+                where = (where == null ? "" : where + " AND ") + query;
+            }
             getContentResolver().delete(Calls.CONTENT_URI, where, selArgs);
             // TODO The change notification should do this automatically, but it isn't working
             // right now. Remove this when the change notification is working properly.

@@ -1250,8 +1250,8 @@
     <string name="summaryon_cl_ask_before_clear">Ask before clearing call log</string>
     <string name="summaryoff_cl_ask_before_clear">Call logs will be cleared without asking</string>
     <string name="title_cl_show_groups">Show groups</string>
-    <string name="summaryon_cl_show_groups">Show groups on call log</string>
-    <string name="summaryoff_cl_show_groups">Flatten call log</string>
+    <string name="summaryon_cl_show_groups">Show groups in call log</string>
+    <string name="summaryoff_cl_show_groups">Hide groups in call log</string>
     
     <!-- Preferences: Contacts -->
     <string name="title_contacts_show_pic">Show contact pictures</string>

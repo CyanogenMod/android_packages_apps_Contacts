@@ -406,7 +406,7 @@
     <string name="recent_calls_clear_missed">Nieodebrane</string>
     <string name="alert_clear_call_log_title">Wyczyść rejestr rozmów</string>
     <string name="alert_clear_call_log_message">Czy napewno chcesz usunąć cały rejestr rozmów?</string>
-    <string name="alert_clear_cl_all_incoming">Czy napewno chcesz usunąć rejetr połączeń przychodzących?</string>
+    <string name="alert_clear_cl_all_incoming">Czy napewno chcesz usunąć rejestr połączeń przychodzących?</string>
     <string name="alert_clear_cl_all_outgoing">Czy napewno chcesz usunąć rejestr połączeń wychodzących?</string>
     <string name="alert_clear_cl_all_missed">Czy napewno chcesz usunąć rejestr połączeń nieodebranych?</string>
     
