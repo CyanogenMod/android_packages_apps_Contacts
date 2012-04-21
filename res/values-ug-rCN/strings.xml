@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Copyright (C) 2006 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ --><resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="sharedUserLabel" msgid="7965035505237135241">"Android يادرولۇق پىروگراممىلار"</string>
+    <string name="contactsList" msgid="8661624236494819731">"ئالاقەداشلار"</string>
+    <string name="launcherDialer" msgid="8636288196618486553">"تېلېفون"</string>
+    <string name="shortcutContact" msgid="749243779392912958">"ئالاقەداش"</string>
+    <string name="shortcutDialContact" msgid="746622101599186779">"بىۋاسىتە نومۇر بۇراش"</string>
+    <string name="shortcutMessageContact" msgid="2460337253595976198">"بىۋاسىتە ئۇچۇر يوللاش"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"ئالاقەداشقا تېز كۇنۇپكا تاللاڭ"</string>
+    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"بۇرايدىغان نومۇر تاللاڭ"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"ئۇچۇر يوللايدىغان نومۇر تاللاڭ"</string>
+    <string name="starredList" msgid="4817256136413959463">"يۇلتۇزلۇق"</string>
+    <string name="frequentList" msgid="7154768136473953056">"دائىم"</string>
+    <string name="strequentList" msgid="5640192862059373511">"يىغقۇچ"</string>
+    <string name="viewContactTitle" msgid="7989394521836644384">"ئالاقەداش تەپسىلاتى"</string>
+    <string name="viewContactDesription" msgid="214186610887547860">"ئالاقەداشنى كۆرسەت"</string>
+    <string name="editContactDescription" msgid="2947202828256214947">"ئالاقەداش تەھرىر"</string>
+    <string name="insertContactDescription" msgid="4709878105452681987">"ئالاقەداش قۇر"</string>
+    <string name="searchHint" msgid="8482945356247760701">"ئالاقەداش ئىزدە"</string>
+    <string name="menu_search" msgid="9147752853603483719">"ئىزدە"</string>
+    <string name="menu_newContact" msgid="1209922412763274638">"يېڭى ئالاقەداش"</string>
+    <string name="menu_viewContact" msgid="2795575601596468581">"ئالاقەداشنى كۆرسەت"</string>
+    <string name="menu_callNumber" msgid="5142851348489387516">"<xliff:g id="NAME">%s</xliff:g> نى چاقىر"</string>
+    <string name="menu_addStar" msgid="2908478235715404876">"يىغقۇچقا قوش"</string>
+    <string name="menu_removeStar" msgid="5844227078364227030">"يىغقۇچتىن چىقىرىۋەت"</string>
+    <string name="menu_editContact" msgid="3452858480713561396">"ئالاقەداش تەھرىر"</string>
+    <string name="menu_deleteContact" msgid="1916555454274101750">"ئالاقەداش ئۆچۈر"</string>
+    <string name="menu_call" msgid="3992595586042260618">"ئالاقەداشنى چاقىر"</string>
+    <string name="menu_sendSMS" msgid="5535886767547006515">"ئالاقەداشقا ئۇچۇر يوللا"</string>
+    <string name="menu_sendEmail" msgid="7293508859242926187">"ئېلخەت يوللا"</string>
+    <string name="menu_viewAddress" msgid="1814744325763202024">"خەرىتە ئادرېسى"</string>
+    <string name="menu_makeDefaultNumber" msgid="4838759253316649534">"كۆڭۈلدىكى نومۇرغا تەڭشەش"</string>
+    <string name="menu_makeDefaultEmail" msgid="2599044610375789994">"كۆڭۈلدىكى ئېلخەتكە تەڭشەش"</string>
+    <string name="menu_splitAggregate" msgid="8368636463748691868">"ئايرىش"</string>
+    <string name="contactsSplitMessage" msgid="5253490235863170269">"ئالاقەداشلار پارچىلاندى"</string>
+    <string name="splitConfirmation_title" msgid="6716467920283502570">"ئالاقەداش پارچىلا"</string>
+    <string name="splitConfirmation" msgid="1150797297503944823">"راستىنلا بۇ ئايرىم ئالاقەداشنى بىر قانچە ئالاقەداشقا پارچىلامسىز: ئۇنىڭ ئىچىدىكى ھەر بىر ئالاقەداش ئۇچۇرى بىردىن ئالاقەداشقا ماس كېلىدۇ؟"</string>
+    <string name="menu_joinAggregate" msgid="5027981918265667970">"بىرلەشتۈر"</string>
+    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"ئالاقەداش بىرلەشتۈر"</string>
+    <string name="blurbJoinContactDataWith" msgid="995870557595050304">"<xliff:g id="NAME">%s</xliff:g> بىلەن بىرلەشتۈرىدىغان ئالاقەداشنى تاللاڭ."</string>
+    <string name="showAllContactsJoinItem" msgid="2189695051430392383">"ھەممە ئالاقەداشنى كۆرسەت"</string>
+    <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"تەۋسىيە ئالاقەداشلار"</string>
+    <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"ھەممە ئالاقەداشلار"</string>
+    <string name="contactsJoinedMessage" msgid="7208148163607047389">"بىرلەشتۈرۈلگەن ئالاقەداشلار"</string>
+    <string name="menu_contactOptions" msgid="1957061455705020617">"تاللانما"</string>
+    <string name="contactOptionsTitle" msgid="8259347644090700915">"تاللانما"</string>
+    <string name="deleteConfirmation_title" msgid="6394309508930335204">"ئۆچۈر"</string>
+    <string name="readOnlyContactWarning" msgid="1390849295342594265">"ئوقۇشقىلا بولىدىغان ھېساباتتىكى ئالاقەداشلارنى ئۆچۈرەلمەيسىز ئەمما ئالاقەداشلار تىزىملىكىدىن يوشۇرالايسىز."</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"بۇ ئالاقەداشنىڭ ئۇچۇرىدا كۆپ ھېساباتتىن كەلگەن ئۇچۇر بار. پەقەت ئوقۇشقىلا بولىدىغان ھېساباتتىن كەلگەن ئۇچۇرلار ئالاقەداشلار تىزىملىكىڭىزدە يوشۇرۇلىدۇ ئەمما ئۆچۈرۈلمەيدۇ."</string>
+    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"بۇ ئالاقەداش ئۆچۈرۈلسە كۆپ ھېساباتتىكى ئۇچۇر ئۆچۈرۈلىدۇ."</string>
+    <string name="deleteConfirmation" msgid="811706994761610640">"بۇ ئالاقەداش ئۆچۈرۈلىدۇ."</string>
+    <string name="menu_done" msgid="796017761764190697">"تامام"</string>
+    <string name="menu_doNotSave" msgid="2174577548513895144">"ئەسلىگە قايتۇر"</string>
+    <string name="editContact_title_edit" msgid="7678695190666836093">"ئالاقەداش تەھرىر"</string>
+    <string name="editContact_title_insert" msgid="9125600232291405757">"يېڭى ئالاقەداش"</string>
+    <string name="label_phonetic_name" msgid="2288082649573927286">"تاۋۇش"</string>
+    <string name="label_notes" msgid="8337354953278341042">"ئىزاھاتلار"</string>
+    <string name="label_sip_address" msgid="124073911714324974">"ئىنتېرنېت چاقىرىشى"</string>
+    <string name="label_ringtone" msgid="8833166825330686244">"زىل ئاۋازى"</string>
+    <string name="ghostData_name" msgid="6490954238641157585">"ئات تەگئات"</string>
+    <string name="ghostData_phonetic_name" msgid="7852749081984070902">"تاۋۇشلۇق ئات"</string>
+    <string name="ghostData_company" msgid="5414421120553765775">"شىركەت"</string>
+    <string name="ghostData_title" msgid="7496735200318496110">"ماۋزۇ"</string>
+    <string name="invalidContactMessage" msgid="5816991830260044593">"بۇ ئالاقەداش مەۋجۇد ئەمەس."</string>
+    <string name="pickerNewContactHeader" msgid="7750705279843568147">"يېڭى ئالاقەداش قۇر"</string>
+    <string name="selectLabel" msgid="4255424123394910733">"بەلگە تاللاڭ"</string>
+    <string name="phoneLabelsGroup" msgid="6468091477851199285">"تېلېفون"</string>
+    <string name="emailLabelsGroup" msgid="8389931313045344406">"ئېلخەت"</string>
+    <string name="imLabelsGroup" msgid="3898238486262614027">"پەيتلىك ئۇچۇر"</string>
+    <string name="postalLabelsGroup" msgid="1618078212734693682">"پوچتا ئادرېسى"</string>
+  <string-array name="otherLabels">
+    <item msgid="8287841928119937597">"تەشكىل"</item>
+    <item msgid="7196592230748086755">"ئىزاھات"</item>
+  </string-array>
+    <string name="photoPickerNotFoundText" msgid="431331662154342581">"تېلېفوندا رەسىمى يوق."</string>
+    <string name="attachToContact" msgid="8820530304406066714">"ئالاقەداش سىنبەلگىسى"</string>
+    <string name="customLabelPickerTitle" msgid="1081475101983255212">"ئۆزلەشتۈرگەن بەلگە ئاتى"</string>
+    <string name="menu_displayGroup" msgid="5655505437727616553">"كۆرسىتىش تاللانما"</string>
+    <string name="displayGroups" msgid="2278964020773993336">"كۆرسىتىش تاللانما"</string>
+    <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"چاقىرىشنى بىۋاسىتە ئۈنخەتكە يوللا"</string>
+    <string name="default_ringtone" msgid="9099988849649827972">"كۆڭۈلدىكى"</string>
+    <string name="changePicture" msgid="2943329047610967714">"سىنبەلگە ئۆزگەرت"</string>
+    <string name="removePicture" msgid="3041230993155966350">"سىنبەلگە چىقىرىۋەت"</string>
+    <string name="noContacts" msgid="8579310973261953559">"ئالاقەداشلار يوق."</string>
+    <string name="noMatchingContacts" msgid="4266283206853990471">"ماس كەلگەن ئالاقەداش تېپىلمىدى."</string>
+    <string name="noContactsWithPhoneNumbers" msgid="1605457050218824269">"ئالاقەداشنىڭ تېلېفون نومۇرى يوق."</string>
+    <string name="showFilterPhones" msgid="4184858075465653970">"تېلېفون نومۇرى بارلارنىلا كۆرسەت"</string>
+    <string name="showFilterPhonesDescrip" msgid="6644443248815191067">"پەقەت تېلېفون نومۇرى بار ئالاقەداشلارنىلا كۆرسىتىدۇ"</string>
+    <string name="headerContactGroups" msgid="2426134991932503843">"كۆرسىتىدىغان ئالاقەداشنى تاللاڭ"</string>
+  <plurals name="groupDescrip">
+    <item quantity="other" msgid="3507881585720628389">"<xliff:g id="COUNT">%0$d</xliff:g> ئالاقەداش"</item>
+  </plurals>
+  <plurals name="groupDescripPhones">
+    <item quantity="other" msgid="3816047547470490208">"<xliff:g id="COUNT_0">%1$d</xliff:g> ئالاقەداش <xliff:g id="COUNTWITHPHONES">%2$d</xliff:g>نىڭ تېلېفون نومۇرى بار."</item>
+  </plurals>
+    <string name="savingContact" msgid="4075751076741924939">"ئالاقەداش ساقلاۋاتىدۇ…"</string>
+    <string name="savingDisplayGroups" msgid="2133152192716475939">"كۆرسىتىش تاللانمىسى ساقلاۋاتىدۇ…"</string>
+    <string name="contactSavedToast" msgid="7152589189385441091">"ئالاقەداش ساقلاندى."</string>
+    <string name="contactSavedErrorToast" msgid="9189098776225004666">"خاتالىق، ئالاقەداش ئۆزگەرتىشىنى ساقلىيالمايدۇ."</string>
+  <plurals name="listTotalPhoneContacts">
+    <item quantity="one" msgid="8721111084815668845">"تېلېفون نومۇرى بار ئالاقەداشتىن 1 نى كۆرسىتىۋاتىدۇ"</item>
+    <item quantity="other" msgid="6133262880804110289">"تېلېفون نومۇرى بار ئالاقەداشتىن <xliff:g id="COUNT">%d</xliff:g> نى كۆرسىتىۋاتىدۇ"</item>
+  </plurals>
+    <string name="listTotalPhoneContactsZero" msgid="2756295259674938869">"كۆرسىتىدىغان ئالاقەداشلارنىڭ تېلېفون نومۇرى يوق"</string>
+  <plurals name="listTotalAllContacts">
+    <item quantity="one" msgid="1096068709488455155">"ئالاقەداشتىن 1 نى كۆرسىتىۋاتىدۇ"</item>
+    <item quantity="other" msgid="2865867557378939630">"ئالاقەداشتىن <xliff:g id="COUNT">%d</xliff:g> نى كۆرسىتىۋاتىدۇ"</item>
+  </plurals>
+    <string name="listTotalAllContactsZero" msgid="6811347506748072822">"ئالاقەداش كۆرسەتمىدى"</string>
+  <plurals name="listFoundAllContacts">
+    <item quantity="one" msgid="2830107332033967280">"1 ئالاقەداش تېپىلدى"</item>
+    <item quantity="other" msgid="7752927996850263152">"<xliff:g id="COUNT">%d</xliff:g> ئالاقەداش تېپىلدى"</item>
+  </plurals>
+    <string name="listFoundAllContactsZero" msgid="5554368784319460828">"ئالاقەداش تېپىلمىدى"</string>
+  <plurals name="searchFoundContacts">
+    <item quantity="one" msgid="916648718690661777">"1 ئالاقەداش"</item>
+    <item quantity="other" msgid="5660384247071761844">"<xliff:g id="COUNT">%d</xliff:g> ئالاقەداش"</item>
+  </plurals>
+    <string name="contactsIconLabel" msgid="7666609097606552806">"ئالاقەداشلار"</string>
+    <string name="contactsFavoritesLabel" msgid="8417039765586853670">"يىغقۇچ"</string>
+    <string name="dialerIconLabel" msgid="6500826552823403796">"تېلېفون"</string>
+    <string name="recentCallsIconLabel" msgid="1419116422359067949">"چاقىرىش خاتىرىسى"</string>
+    <string name="liveFolderAll" msgid="4789010460767506206">"ھەممە ئالاقەداشلار"</string>
+    <string name="liveFolderFavorites" msgid="3100957542927222282">"يۇلتۇزلۇق ئالاقەداشلار"</string>
+    <string name="liveFolderPhone" msgid="3739376066610926780">"تېلېفون نومۇرى بار ئالاقەداشلار"</string>
+    <string name="menu_sendTextMessage" msgid="6937343460284499306">"تېكست ئۇچۇر يوللا"</string>
+    <string name="recentCalls_callNumber" msgid="1756372533999226126">"<xliff:g id="NAME">%s</xliff:g> نى چاقىر"</string>
+    <string name="recentCalls_editNumberBeforeCall" msgid="7756171675833267857">"چىقىرىشتىن ئىلگىرى نومۇر تەھرىر"</string>
+    <string name="recentCalls_addToContact" msgid="1429899535546487008">"ئالاقەداشقا قوش"</string>
+    <string name="recentCalls_removeFromRecentList" msgid="401662244636511330">"چاقىرىش خاتىرىسىدىن چىقىرىۋەت"</string>
+    <string name="recentCalls_deleteAll" msgid="6352364392762163704">"چاقىرىش خاتىرىسىنى تازىلا"</string>
+    <string name="recentCalls_empty" msgid="247053222448663107">"چاقىرىش خاتىرىسى بوش."</string>
+    <string name="clearCallLogConfirmation_title" msgid="718072843006222703">"چاقىرىش خاتىرىسىنى تازىلا"</string>
+    <string name="clearCallLogConfirmation" msgid="7625927669136267636">"راستىنلا ھەممە چاقىرىش خاتىرىسىنى تازىلامسىز؟"</string>
+    <string name="imei" msgid="3045126336951684285">"IMEI"</string>
+    <string name="meid" msgid="6210568493746275750">"MEID"</string>
+    <string name="voicemail" msgid="3851469869202611441">"ئۈنخەت"</string>
+    <string name="unknown" msgid="740067747858270469">"يوچۇن"</string>
+    <string name="private_num" msgid="6374339738119166953">"شەخسىي نومۇر"</string>
+    <string name="payphone" msgid="4864313342828942922">"ئاممىۋى تېلېفون"</string>
+    <string name="dialerKeyboardHintText" msgid="5401660096579787344">"ھەرپتاختىدا نومۇر بۇراش"</string>
+    <string name="dialerDialpadHintText" msgid="5824490365898349041">"نومۇر بۇراپ چاقىرىشقا قوش"</string>
+    <string name="simContacts_emptyLoading" msgid="6700035985448642408">"SIM كارتىدىن يۈكلەۋاتىدۇ…"</string>
+    <string name="simContacts_title" msgid="27341688347689769">"SIM كارتىدىكى ئالاقەداشلار"</string>
+    <string name="noContactsHelpTextWithSyncForCreateShortcut" msgid="801504710275614594">"كۆرسىتىدىغان ھېچقانداق ئالاقەداش يوق. (ئەگەر بايىلا ھېساباتتىن بىرنى قوشقان بولسىڭىز ئۇنداقتا ئالاقەداشلارنى قەدەمداشلاشقا بىر قانچە مىنۇت كېتىدۇ.)"</string>
+    <string name="noContactsHelpTextForCreateShortcut" msgid="3081286388667108335">«كۆرسىتىدىغان ھېچقانداق ئالاقەداش يوق.»</string>
+    <string name="noContactsHelpText" msgid="6788487368878712350">"كۆرسىتىدىغان ھېچقانداق ئالاقەداش يوق."\n\n"ئالاقەداش قوشۇشتا، <font fgcolor="#ffffffff"><b>"تىزىملىك"</b></font>"نى بېسىپ، ئاندىن : "\n \n<li><font fgcolor="#ffffffff"><b>"ھېسابات"</b></font> "قوشۇپ ياكى سەپلەپ، تېلېفوندىكى ئالاقەداشلار ھېساباتى بىلەن قەدەمداشلىغىلى بولىدۇ."\n</li>\n<li><font fgcolor="#ffffffff"><b>"يېڭى ئالاقەداش"</b></font> "يېڭىدىن باشلاپ قۇرۇلىدۇ"\n</li> \n<li><font fgcolor="#ffffffff"><b>"ئەكىر/چىقار"</b></font>\n</li></string>
+    <string name="noContactsHelpTextWithSync" msgid="3734101165712848179">"كۆرسىتىدىغان ھېچقانداق ئالاقەداش يوق."\n\n"ئالاقەداش قوشۇشتا، "<font fgcolor="#ffffffff"><b>"تىزىملىك"</b></font>"نى بېسىپ، ئاندىن : "\n \n<li><font fgcolor="#ffffffff"><b>"ھېسابات"</b></font>" قوشۇپ ياكى سەپلەپ، تېلېفوندىكى ئالاقەداشلار ھېساباتى بىلەن قەدەمداشلىغىلى بولىدۇ."\n</li>\n<li><font fgcolor="#ffffffff"><b>"يېڭى ئالاقەداش"</b></font> "يېڭىدىن باشلاپ قۇرۇلىدۇ"\n</li> \n<li><font fgcolor="#ffffffff"><b>"ئەكىر/چىقار"</b></font>\n</li>"</string>
+    <string name="noContactsNoSimHelpText" msgid="6553845386917463292">"كۆرسىتىدىغان ھېچقانداق ئالاقەداش يوق."\n\n"ئالاقەداش قوشۇشتا، <font fgcolor="#ffffffff"><b>"تىزىملىك"</b></font>"نى بېسىپ، ئاندىن : "\n \n<li><font fgcolor="#ffffffff"><b>"ھېسابات"</b></font> "قوشۇپ ياكى سەپلەپ، تېلېفوندىكى ئالاقەداشلار ھېساباتى بىلەن قەدەمداشلىغىلى بولىدۇ."\n</li>\n<li><font fgcolor="#ffffffff"><b>"يېڭى ئالاقەداش"</b></font> "يېڭىدىن باشلاپ قۇرۇلىدۇ"\n</li> \n<li><font fgcolor="#ffffffff"><b>"ئەكىر/چىقار"</b></font>\n</li></string>
+    <string name="noContactsNoSimHelpTextWithSync" msgid="1122296298361373488">"كۆرسىتىدىغان ھېچقانداق ئالاقەداش يوق."\n\n"ئالاقەداش قوشۇشتا، "<font fgcolor="#ffffffff"><b>"تىزىملىك"</b></font>"نى بېسىپ، ئاندىن : "\n \n<li><font fgcolor="#ffffffff"><b>"ھېسابات"</b></font>" قوشۇپ ياكى سەپلەپ، تېلېفوندىكى ئالاقەداشلار ھېساباتى بىلەن قەدەمداشلىغىلى بولىدۇ."\n</li>\n<li><font fgcolor="#ffffffff"><b>"يېڭى ئالاقەداش"</b></font> "يېڭىدىن باشلاپ قۇرۇلىدۇ"\n</li> \n<li><font fgcolor="#ffffffff"><b>"ئەكىر/چىقار"</b></font>\n</li>"</string>
+    <string name="noFavoritesHelpText" msgid="3744655776704833277">"سىز ھېچقانداق ئالاقەداشنى يىغقۇچقا قوشمىدىڭىز"\n\n"يىغقۇچقا ئالاقەداش قوشۇشتا تۆۋەندىكى مەشغۇلاتنى ئىجرا قىلىڭ:"\n <li> <b>"ئالاقەداشلار"</b> "بەتكۈچنى چېكىڭ"\n</li> \n<li>"يىغقۇچقا قوشىدىغان ئالاقەداشلىرىڭىزنى چېكىڭ"\n</li> \n<li>"ئالاقەداشلار ئاتىنىڭ يېنىدىكى يۇلتۇزنى چېكىڭ"\n</li></string>
+    <string name="liveFolder_all_label" msgid="5961411940473276616">"ھەممە ئالاقەداشلار"</string>
+    <string name="liveFolder_favorites_label" msgid="2674341514070517105">"يۇلتۇزلۇق"</string>
+    <string name="liveFolder_phones_label" msgid="1709786878793436245">"تېلېفون"</string>
+    <string name="dialer_useDtmfDialpad" msgid="1707548397435075040">"كۇنۇپكىلىق ھەرپتاختا ئىشلىتىش"</string>
+    <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"چاقىرىشقا قايتىش"</string>
+    <string name="dialer_addAnotherCall" msgid="4205688819890074468">"چاقىرىش قوش"</string>
+    <string name="callDetailTitle" msgid="5340227785196217938">"چاقىرىش تەپسىلاتى"</string>
+    <string name="toast_call_detail_error" msgid="7200975244804730096">"ئىلتىماس قىلغان چاقىرىشنىڭ تەپسىلاتىنى ئوقۇيالمىدى."</string>
+    <string name="type_incoming" msgid="6502076603836088532">"چاقىرىلىش"</string>
+    <string name="type_outgoing" msgid="343108709599392641">"چاقىرىش"</string>
+    <string name="type_missed" msgid="2720502601640509542">"سۆزلەشمىگەن چاقىرىش"</string>
+    <string name="actionIncomingCall" msgid="6028930669817038600">"چاقىرىلىش"</string>
+    <string name="callBack" msgid="5498224409038809224">"قايتۇرۇپ چاقىر"</string>
+    <string name="callAgain" msgid="3197312117049874778">"قايتا چاقىر"</string>
+    <string name="returnCall" msgid="8171961914203617813">"چاقىرىشقا قايت"</string>
+    <string name="callDetailsDurationFormat" msgid="8157706382818184268">"<xliff:g id="MINUTES">%1$s</xliff:g> مىنۇت <xliff:g id="SECONDS">%2$s</xliff:g> سېكۇنت"</string>
+    <string name="favoritesFrquentSeparator" msgid="8107518433381283736">"دائىملىق ئالاقەداشلار"</string>
+    <string name="add_contact_dlg_title" msgid="2896685845822146494">"ئالاقەداش قوش"</string>
+    <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"\"<xliff:g id="EMAIL">%s</xliff:g>\" نى ئالاقەداشقا قوشامدۇ؟"</string>
+    <string name="all_tab_label" msgid="4003124364397916826">"ھەممىسى"</string>
+    <string name="description_image_button_one" msgid="1740638037139856139">"بىر"</string>
+    <string name="description_image_button_two" msgid="5882638439003731308">"ئىككى"</string>
+    <string name="description_image_button_three" msgid="8709731759376015180">"ئۈچ"</string>
+    <string name="description_image_button_four" msgid="3530239685642246130">"تۆت"</string>
+    <string name="description_image_button_five" msgid="1182465427501188413">"بەش"</string>
+    <string name="description_image_button_six" msgid="2093656269261415475">"ئالتە"</string>
+    <string name="description_image_button_seven" msgid="2450357020447676481">"يەتتە"</string>
+    <string name="description_image_button_eight" msgid="6969435115163287801">"سەككىز"</string>
+    <string name="description_image_button_nine" msgid="7857248695662558323">"توققۇز"</string>
+    <string name="description_image_button_star" msgid="3365919907520767866">"يۇلتۇز"</string>
+    <string name="description_image_button_zero" msgid="4133108949401820710">"نۆل"</string>
+    <string name="description_image_button_pound" msgid="3039765597595889230">"چارچاپ"</string>
+    <string name="description_voicemail_button" msgid="3402506823655455591">"ئۈنخەت"</string>
+    <string name="description_dial_button" msgid="1274091017188142646">"نومۇر بۇراش"</string>
+    <string name="description_delete_button" msgid="6263102114033407382">"backspace"</string>
+    <string name="description_digits_edittext" msgid="8760207516497016437">"ئۇرىدىغان نومۇر"</string>
+    <string name="description_contact_photo" msgid="3387458082667894062">"ئالاقەداش سۈرىتى"</string>
+    <string name="description_minus_button" msgid="387136707700230172">"مىنۇس"</string>
+    <string name="description_plus_button" msgid="515164827856229880">"پىلۇس"</string>
+    <string name="no_sdcard_title" product="nosdcard" msgid="5362631473262100989">"USB ساقلىغۇچنى ئىشلەتكىلى بولمايدۇ "</string>
+    <string name="no_sdcard_title" product="default" msgid="5911758680339949273">"SD كارتا يوق"</string>
+    <string name="no_sdcard_message" product="nosdcard" msgid="8045830739790534254">"USB ساقلىغۇچ بايقالمىدى."</string>
+    <string name="no_sdcard_message" product="default" msgid="6019391476490445358">"SD كارتا بايقالمىدى"</string>
+    <string name="searching_vcard_title" msgid="4970508055399376813">"vCard ئىزدەۋاتىدۇ"</string>
+    <string name="import_from_sim" msgid="3859272228033941659">"SIM كارتىدىن ئەكىر"</string>
+    <string name="import_from_sdcard" product="nosdcard" msgid="8294728696808674154">"USB ساقلىغۇچتىن ئەكىر"</string>
+    <string name="import_from_sdcard" product="default" msgid="8550360976693202816">"SD كارتىدىن ئەكىر"</string>
+    <string name="export_to_sdcard" product="nosdcard" msgid="7201274701382901259">"USB ساقلىغۇچقا چىقار"</string>
+    <string name="export_to_sdcard" product="default" msgid="2597105442616166277">"SD كارتىغا چىقار"</string>
+    <string name="share_visible_contacts" msgid="890150378880783797">"كۆرۈنىدىغان ئالاقەداش ھەمبەھىر"</string>
+    <string name="import_one_vcard_string" msgid="9059163467020328433">"بىر vCard ھۆججەت ئەكىر"</string>
+    <string name="import_multiple_vcard_string" msgid="3810226492811062392">"كۆپ vCard ھۆججەت ئەكىر"</string>
+    <string name="import_all_vcard_string" msgid="5518136113853448474">"ھەممە vCard ھۆججەتنى ئەكىر"</string>
+    <string name="searching_vcard_message" product="nosdcard" msgid="8214795338181412751">"USB ساقلىغۇچتىن vCard سانلىق مەلۇماتىنى ئىزدەۋاتىدۇ"</string>
+    <string name="searching_vcard_message" product="default" msgid="6917522333561434546">"SD كارتىدىن vCard سانلىق مەلۇماتىنى ئىزدەۋاتىدۇ"</string>
+    <string name="scanning_sdcard_failed_title" product="nosdcard" msgid="7447077516493667568">"USB ساقلىغۇچنى تەكشۈرەلمىدى"</string>
+    <string name="scanning_sdcard_failed_title" product="default" msgid="3506782007953167180">"SD كارتا تەكشۈرەلمىدى"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="5645544323676912703">"USB ساقلىغۇچنى تەكشۈرەلمىدى(سەۋەبى: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="3761992500690182922">"SD كارتا تەكشۈرەلمىدى(سەۋەبى: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="fail_reason_io_error" msgid="5922864781066136340">"I/O خاتالىقى"</string>
+    <string name="fail_reason_vcard_parse_error" msgid="1201233722762680214">"تاسادىپىي خاتالىق تۈپەيلىدىن vCard نى يېشەلمىدى"</string>
+    <string name="fail_reason_vcard_not_supported_error" msgid="655208100451286027">"گەرچە vCard ئىناۋەتلىك پىچىم ئىشلەتكەن بولسىمۇ ئەمما سىستېما ئۇنى يېشەلمىدى چۈنكى نۆۋەتتە ئەمەلگە ئاشۇرۇلغان لايىھە بۇ پىچىمنى قوللىمايدۇ"</string>
+    <string name="fail_reason_no_vcard_file" product="nosdcard" msgid="4231528180481838813">"بۇ USB ساقلىغۇچتىن vCard ھۆججىتىنى تاپالمىدى"</string>
+    <string name="fail_reason_no_vcard_file" product="default" msgid="6376516175882881595">"SD كارتىدىن vCard ھۆججىتىنى تاپالمىدى."</string>
+    <string name="fail_reason_failed_to_read_files" msgid="3659521123567134029">"بىر ياكى بىر قانچە ھۆججەت ئەكىرىش مەغلۇپ بولدى (%s)."</string>
+    <string name="fail_reason_unknown" msgid="999034019513096768">"يوچۇن خاتالىق"</string>
+    <string name="select_vcard_title" msgid="3968948173786172468">"vCard ھۆججەت تاللاڭ"</string>
+    <string name="progress_shower_message" msgid="5636525578293752526">"<xliff:g id="ACTION">%1$s</xliff:g>"\n"<xliff:g id="FILENAME">%2$s</xliff:g>"</string>
+    <string name="reading_vcard_title" msgid="4723433501579653199">"vCard ئوقۇۋاتىدۇ"</string>
+    <string name="reading_vcard_message" msgid="6381368920030748743">"vCard ھۆججەت(لەر)نى ئوقۇۋاتىدۇ"</string>
+    <string name="reading_vcard_failed_title" msgid="4923008144735294994">"vCard سانلىق مەلۇماتىنى ئوقۇش مەغلۇپ بولدى"</string>
+    <string name="reading_vcard_contacts" msgid="3066834102042012868">"<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> دىن <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> ئالاقەداش"</string>
+    <string name="reading_vcard_files" msgid="34180143726972661">"<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> دىن <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> ھۆججەت"</string>
+    <string name="confirm_export_title" msgid="7648747763127442983">"چىقىرىش جەزملەش"</string>
+    <string name="confirm_export_message" msgid="3875683519257829750">"ئالاقەداش تىزىملىرىڭىزنى راستىنلا \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\" غا چىقىرامسىز؟"</string>
+    <string name="exporting_contact_failed_title" msgid="585823094820602526">"ئالاقەداش سانلىق مەلۇماتلىرىنى چىقىرالمىدى"</string>
+    <string name="exporting_contact_failed_message" msgid="4151348002470298092">"ئالاقەداش سانلىق مەلۇماتلىرىنى چىقىرالمىدى."\n"سەۋەبى:  \"<xliff:g id="FAIL_REASON">%s</xliff:g>\"</string>
+    <string name="fail_reason_no_exportable_contact" msgid="4919714086648344495">"چىقىرىشقا بولىدىغان ئالاقەداش يوق"</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="2638638826954895225">"ساقلىغۇچتا vCard ھۆججىتى بەك كۆپ"</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="7084146295639672658">"SD كارتىدا vCard ھۆججىتى بەك كۆپ"</string>
+    <string name="fail_reason_too_long_filename" msgid="1915716071321839166">"لازىملىق ھۆججەت ئىسمى بەك ئۇزۇن (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
+    <string name="exporting_contact_list_title" msgid="9072240631534457415">"ئالاقەداش سانلىق مەلۇماتلىرىنى چىقىرىۋاتىدۇ"</string>
+    <string name="exporting_contact_list_message" msgid="5640326540405486055">"ئالاقەداش سانلىق مەلۇماتلىرىنى \"<xliff:g id="FILE_NAME">%s</xliff:g>\" غا چىقىرىۋاتىدۇ"</string>
+    <string name="fail_reason_could_not_initialize_exporter" msgid="4943708332700987376">"چىقارغۇچنى دەسلەپلەشتۈرەلمىدى: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
+    <string name="fail_reason_error_occurred_during_export" msgid="2151165129433831202">"چىقىرىۋاتقاندا خاتالىق كۆرۈلدى: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="3723109558155169053">"ساندان ئۇچۇرىغا ئېرىشەلمىدى"</string>
+    <string name="composer_has_no_exportable_contact" msgid="754734132189369094">"چىقىرىدىغان ئالاقەداشلار يوق. ئەگەر تېلېفونىڭىزدا ھەقىقەتەن ئالاقەداشلارىڭىز بولسا ئۇنداقتا مەلۇم سانلىق مەلۇمات تەمىنلەش پىروگراممىسى تېلېفونىڭىزدىن ھەر قانداق ئالاقەداش چىقىرىشنى چەكلىگەن بولۇشى مۇمكىن."</string>
+    <string name="composer_not_initialized" msgid="8041534450748388843">"vCard ياساش پىروگراممىسى توغرا دەسلەپلەشتۈرۈلمىدى"</string>
+    <string name="fail_reason_could_not_open_file" msgid="4013520943128739511">"\"<xliff:g id="FILE_NAME">%1$s</xliff:g>\"نى ئاچالمىدى: <xliff:g id="EXACT_REASON">%2$s</xliff:g>"</string>
+    <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> دىن <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> ئالاقەداش"</string>
+    <string name="search_settings_description" msgid="2675223022992445813">"ئالاقەداشنىڭ ئاتى"</string>
+    <string name="add_2sec_pause" msgid="9214012315201040129">"ۋاقىتلىق توختاشقا 2 سېكۇنت قوش"</string>
+    <string name="add_wait" msgid="3360818652790319634">"كۈتۈش ۋاقتى قوش"</string>
+    <string name="call_disambig_title" msgid="1911302597959335178">"چاقىرىش ئۇسۇلى"</string>
+    <string name="sms_disambig_title" msgid="4675399294513152364">"تېكىست ئىشلىتىش"</string>
+    <string name="make_primary" msgid="5829291915305113983">"بۇ تاللاشنى ئەستە تۇت"</string>
+    <string name="quickcontact_missing_app" msgid="4600366393134289038">"بۇ مەشغۇلاتنى بىر تەرەپ قىلىدىغان ئەپ يوق"</string>
+    <string name="quickcontact_remember_choice" msgid="5964536411579749424">"بۇ تاللاشنى ئەستە تۇت"</string>
+    <string name="quickcontact_missing_name" msgid="5590266114306996632">"يوچۇن"</string>
+    <string name="menu_accounts" msgid="8499114602017077970">"ھېساباتلار"</string>
+    <string name="menu_import_export" msgid="3765725645491577190">"ئەكىر/چىقار"</string>
+    <string name="dialog_import_export" msgid="4771877268244096596">"ئالاقەداش ئەكىر/چىقار"</string>
+    <string name="menu_share" msgid="943789700636542260">"ھەمبەھىر"</string>
+    <string name="share_via" msgid="563121028023030093">"ئالاقەداش ھەمبەھىر ئۇسۇلى"</string>
+    <string name="share_error" msgid="4374508848981697170">"بۇ ئالاقەداشنى ھەمبەھىرلىگىلى بولمايدۇ."</string>
+    <string name="nameLabelsGroup" msgid="2034640839640477827">"ئاتى"</string>
+    <string name="nicknameLabelsGroup" msgid="2891682101053358010">"تەخەللۇس"</string>
+    <string name="organizationLabelsGroup" msgid="2478611760751832035">"تەشكىل"</string>
+    <string name="websiteLabelsGroup" msgid="4202998982804009261">"تور بېكەت"</string>
+    <string name="eventLabelsGroup" msgid="8069912895912714412">"پائالىيەت"</string>
+    <string name="type_short_home" msgid="7770424864090605384">"ئۆي"</string>
+    <string name="type_short_mobile" msgid="1655473281466676216">"باھار"</string>
+    <string name="type_short_work" msgid="4925330752504537861">"ئىدارە"</string>
+    <string name="type_short_pager" msgid="2613818970827594238">"چاقىرغۇ"</string>
+    <string name="type_short_other" msgid="5669407180177236769">"باشقا"</string>
+    <string name="edit_read_only" msgid="8158629550655830981">"بۇ ئالاقەداشنى ئوقۇشقىلا بولىدۇ"</string>
+    <string name="edit_secondary_collapse" msgid="5371618426594477103">"تېخىمۇ كۆپ"</string>
+    <string name="dialog_primary_name" msgid="5521591005692614833">"ئاساسىي ئات"</string>
+    <string name="dialog_new_contact_account" msgid="9044704073286262197">"ھېساباتقا ئالاقەداش قۇر"</string>
+    <string name="menu_sync_remove" msgid="3266725887008450161">"قەدەمداش گۇرۇپپىنى چىقىرىۋەت"</string>
+    <string name="dialog_sync_add" msgid="8267045393119375803">"قەدەمداش گۇرۇپپا قوش"</string>
+    <string name="display_more_groups" msgid="2682547080423434170">"تېخىمۇ كۆپ گۇرۇپپا…"</string>
+    <string name="display_ungrouped" msgid="4602580795576261158">"باشقا ھەممە ئالاقەداشلار"</string>
+    <string name="display_all_contacts" msgid="6846131371214707956">"ھەممە ئالاقەداشلار"</string>
+    <string name="display_warn_remove_ungrouped" msgid="2314043155909167610">"ئەگەر قەدەمداشتىن \'<xliff:g id="GROUP">%s</xliff:g>\' گۇرۇپپا چىقىرىۋېتىلسە ئۇنداقتا گۇرۇپپىغا ئايرىلمىغان باشقا ھەممە ئالاقەداشلارمۇ بىللە چىقىرىۋېتىلىدۇ."</string>
+    <string name="account_phone" msgid="3682950835276226870">"تېلېفوندىلا، قەدەمداشلانمىغان"</string>
+    <string name="call_custom" msgid="7756571794763171802">"<xliff:g id="CUSTOM">%s</xliff:g> نى چاقىر"</string>
+    <string name="call_home" msgid="1990519474420545392">"ئۆي تېلېفوننى چاقىر"</string>
+    <string name="call_mobile" msgid="7502236805487609178">"يانفوننى چاقىر"</string>
+    <string name="call_work" msgid="5328785911463744028">"خىزمەت تېلېفوننى چاقىر"</string>
+    <string name="call_fax_work" msgid="7467763592359059243">"خىزمەت فاكىسنى چاقىر"</string>
+    <string name="call_fax_home" msgid="8342175628887571876">"ئۆي فاكىسنى چاقىر"</string>
+    <string name="call_pager" msgid="9003902812293983281">"چاقىرغۇنى چاقىر"</string>
+    <string name="call_other" msgid="8563753966926932052">"چاقىر"</string>
+    <string name="call_callback" msgid="1910165691349426858">"قايتا چاقىرىلغان نومۇرنى چاقىر"</string>
+    <string name="call_car" msgid="3280537320306436445">"ماشىنا تېلېفونىنى چاقىر"</string>
+    <string name="call_company_main" msgid="6105120947138711257">"شىركەت باش ئاپپاراتىنى چاقىر"</string>
+    <string name="call_isdn" msgid="1541590690193403411">"ISDN چاقىر"</string>
+    <string name="call_main" msgid="6082900571803441339">"باش ئاپپاراتنى چاقىر"</string>
+    <string name="call_other_fax" msgid="5745314124619636674">"فاكىسنى چاقىر"</string>
+    <string name="call_radio" msgid="8296755876398357063">"رادىيو چاقىر"</string>
+    <string name="call_telex" msgid="2223170774548648114">"تېلېگرامما چاقىر"</string>
+    <string name="call_tty_tdd" msgid="8951266948204379604">"TTY/TDD چاقىر"</string>
+    <string name="call_work_mobile" msgid="8707874281430105394">"خىزمەت يانفوننى چاقىر"</string>
+    <string name="call_work_pager" msgid="3419348514157949008">"خىزمەت چاقىرغۇنى چاقىر"</string>
+    <string name="call_assistant" msgid="2141641383068514308">"<xliff:g id="ASSISTANT">%s</xliff:g> نى چاقىر"</string>
+    <string name="call_mms" msgid="6274041545876221437">"MMS چاقىر"</string>
+    <string name="sms_custom" msgid="5932736853732191825">"<xliff:g id="CUSTOM">%s</xliff:g> غا ئۇچۇر يوللا"</string>
+    <string name="sms_home" msgid="7524332261493162995">"ئۆي تېلېفونغا ئۇچۇر يوللا"</string>
+    <string name="sms_mobile" msgid="5200107250451030769">"يانفونغا ئۇچۇر يوللا"</string>
+    <string name="sms_work" msgid="2269624156655267740">"خىزمەت تېلېفونغا ئۇچۇر يوللا"</string>
+    <string name="sms_fax_work" msgid="8028189067816907075">"خىزمەت فاكىسقا ئۇچۇر يوللا"</string>
+    <string name="sms_fax_home" msgid="9204042076306809634">"ئۆي فاكىسقا ئۇچۇر يوللا"</string>
+    <string name="sms_pager" msgid="7730404569637015192">"چاقىرغۇغا ئۇچۇر يوللا"</string>
+    <string name="sms_other" msgid="806127844607642331">"قىسقا ئۇچۇر"</string>
+    <string name="sms_callback" msgid="5004824430094288752">"قايتا چاقىرىلغان نومۇرغا ئۇچۇر يوللا"</string>
+    <string name="sms_car" msgid="7444227058437359641">"ماشىنا تېلېفونىغا ئۇچۇر يوللا"</string>
+    <string name="sms_company_main" msgid="118970873419678087">"شىركەت باش ئاپپاراتىغا ئۇچۇر يوللا"</string>
+    <string name="sms_isdn" msgid="8153785037515047845">"ISDN گە ئۇچۇر يوللا"</string>
+    <string name="sms_main" msgid="8621625784504541679">"باش ئاپپاراتقا ئۇچۇر يوللا"</string>
+    <string name="sms_other_fax" msgid="3888842199855843152">"فاكىسقا قىسقا ئۇچۇر يوللا"</string>
+    <string name="sms_radio" msgid="3329166673433967820">"رادىيوغا ئۇچۇر يوللا"</string>
+    <string name="sms_telex" msgid="9034802430065267848">"تېلېگراممىغا ئۇچۇر يوللا"</string>
+    <string name="sms_tty_tdd" msgid="6782284969132531532">"TTY/TDD غا ئۇچۇر يوللا"</string>
+    <string name="sms_work_mobile" msgid="2459939960512702560">"خىزمەت يانفونغا ئۇچۇر يوللا"</string>
+    <string name="sms_work_pager" msgid="5566924423316960597">"خىزمەت چاقىرغۇغا ئۇچۇر يوللا"</string>
+    <string name="sms_assistant" msgid="2773424339923116234">"<xliff:g id="ASSISTANT">%s</xliff:g> غا ئۇچۇر يوللا"</string>
+    <string name="sms_mms" msgid="4069352461380762677">"MMS كە ئۇچۇر يوللا"</string>
+    <string name="email_home" msgid="8573740658148184279">"ئۆيگە ئېلخەت يوللا"</string>
+    <string name="email_mobile" msgid="2042889209787989814">"يانفونغا ئېلخەت يوللا"</string>
+    <string name="email_work" msgid="2807430017302722689">"خىزمەت تېلېفونغا ئېلخەت يوللا"</string>
+    <string name="email_other" msgid="3454004077967657109">"ئېلخەت"</string>
+    <string name="email_custom" msgid="7548003991586214105">"<xliff:g id="CUSTOM">%s</xliff:g> غا ئېلخەت يوللا"</string>
+    <string name="email" msgid="5668400997660065897">"ئېلخەت"</string>
+    <string name="map_home" msgid="1243547733423343982">"ئۆي ئادرېسىنى كۆرسەت"</string>
+    <string name="map_work" msgid="1360474076921878088">"خىزمەت ئادرېسىنى كۆرسەت"</string>
+    <string name="map_other" msgid="3817820803587012641">"ئادرېسنى كۆرسەت"</string>
+    <string name="map_custom" msgid="6184363799976265281">"<xliff:g id="CUSTOM">%s</xliff:g> ئادرېسنى كۆرسەت"</string>
+    <string name="chat_aim" msgid="2588492205291249142">"AIM دا مۇڭداش"</string>
+    <string name="chat_msn" msgid="8041633440091073484">"Windows Live دا مۇڭداش"</string>
+    <string name="chat_yahoo" msgid="6629211142719943666">"Yahoo دا مۇڭداش"</string>
+    <string name="chat_skype" msgid="1210045020427480566">"Skype دا مۇڭداش"</string>
+    <string name="chat_qq" msgid="4294637812847719693">"QQ دا مۇڭداش"</string>
+    <string name="chat_gtalk" msgid="981575737258117697">"Google Talk تا مۇڭداش"</string>
+    <string name="chat_icq" msgid="8438405386153745775">"ICQ دا مۇڭداش"</string>
+    <string name="chat_jabber" msgid="7561444230307829609">"Jabber دا مۇڭداش"</string>
+    <string name="chat" msgid="9025361898797412245">"مۇڭداش"</string>
+    <string name="postal_street" msgid="8133143961580058972">"كوچا"</string>
+    <string name="postal_pobox" msgid="4431938829180269821">"خەت ساندۇق"</string>
+    <string name="postal_neighborhood" msgid="1450783874558956739">"قوشنا"</string>
+    <string name="postal_city" msgid="6597491300084895548">"شەھەر"</string>
+    <string name="postal_region" msgid="6045263193478437672">"دۆلەت"</string>
+    <string name="postal_postcode" msgid="572136414136673751">"پوچتا نومۇر"</string>
+    <string name="postal_country" msgid="7638264508416368690">"دۆلەت"</string>
+    <string name="name_given" msgid="1687286314106019813">"ئاتى"</string>
+    <string name="name_family" msgid="3416695586119999058">"تەگئاتى"</string>
+    <string name="name_prefix" msgid="59756378548779822">"ئات ئالدى قوشۇلغۇچىسى"</string>
+    <string name="name_middle" msgid="8467433655992690326">"ئوتتۇرا ئاتى"</string>
+    <string name="name_suffix" msgid="3855278445375651441">"ئات ئارقا قوشۇلغۇچىسى"</string>
+    <string name="name_phonetic_given" msgid="6853570431394449191">"تاۋۇشلۇق ئات"</string>
+    <string name="name_phonetic_middle" msgid="8643721493320405200">"تاۋۇشلۇق ئوتتۇرا ئات"</string>
+    <string name="name_phonetic_family" msgid="462095502140180305">"تاۋۇشلۇق تەگئات"</string>
+    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> ئالاقەداش"</string>
+    <string name="from_account_format" msgid="687567483928582084">"ئورنى <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="use_photo_as_primary" msgid="8807110122951157246">"بۇ سۈرەتنى ئىشلەت"</string>
+    <string name="contact_read_only" msgid="1203216914575723978">"<xliff:g id="SOURCE">%1$s</xliff:g> دىكى ئالاقەداشلارنىڭ ئۇچۇرىنى بۇ ئۈسكۈنىدە تەھرىرلىگىلى بولمايدۇ."</string>
+    <string name="no_contact_details" msgid="6754415338321837001">"بۇ ئالاقەداشنىڭ باشقا ئۇچۇرى يوق"</string>
+    <string name="display_options_sort_list_by" msgid="6080091755852211076">"تىزىملىك تەرتىپلەش ئاساسى"</string>
+    <string name="display_options_sort_by_given_name" msgid="184916793466387067">"ئاتى"</string>
+    <string name="display_options_sort_by_family_name" msgid="7857986975275712622">"تەگئاتى"</string>
+    <string name="display_options_view_names_as" msgid="18022868169627979">"ئالاقەداشنىڭ ئاتىنى كۆرسىتىش ئۇسۇلى"</string>
+    <string name="display_options_view_given_name_first" msgid="6968288511197363292">"ئالدى بىلەن ئاتى"</string>
+    <string name="display_options_view_family_name_first" msgid="1447288164951453714">"ئالدى بىلەن تەگئاتى"</string>
+    <string name="search_bar_hint" msgid="1012756309632856553">"ئالاقەداش ئىزدە"</string>
+    <string name="search_for_all_contacts" msgid="6644963335787294131">"ھەممە ئالاقەداشنى ئىزدە"</string>
+    <string name="take_photo" msgid="7496128293167402354">"رەسىم تارت"</string>
+    <string name="pick_photo" msgid="448886509158039462">"رەسىم يىغقۇچتىن سۈرەت تاللاڭ"</string>
+    <string name="locale_change_in_progress" msgid="1124266507671178413">"تىل ئۆزگەرگەنلىكتىن ئالاقەداشلار تىزىملىكىنى يېڭىلاۋاتىدۇ."\n\n"سەل كۈتۈڭ…"</string>
+    <string name="upgrade_in_progress" msgid="7530893673211750223">"ئالاقەداشلار تىزىمىنى يېڭىلاۋاتىدۇ."\n\n"سەل كۈتۈڭ…"</string>
+    <string name="upgrade_out_of_memory" msgid="492151063059824962">"ئالاقەداشلار يېڭىلىنىۋاتىدۇ."\n\n"يېڭىلاش جەريانىغا تەخمىنەن <xliff:g id="SIZE_IN_MEGABYTES">%d</xliff:g>Mb يانفون ساقلىغۇچىسى زۆرۈر."\n\n"تۆۋەندىكى تاللانمىدىن بىرنى تاللاڭ:"</string>
+    <string name="upgrade_out_of_memory_uninstall" msgid="1721798828992091432">"بەزى پىروگراممىلارنى ئۆچۈرۈش"</string>
+    <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"يېڭىلاشنى قايتا سىناش"</string>
+    <string name="search_results_for" msgid="8705490885073188513">"ئىزدەش نەتىجىسى: <xliff:g id="QUERY">%s</xliff:g>"</string>
+    <string name="search_results_searching" msgid="7755623475227227314">"ئىزدەۋاتىدۇ…"</string>
+</resources>
