@@ -486,4 +486,22 @@
     <string name="summary_about_version">1.2</string>
     <string name="title_about_credits">Podziękowania</string>
     <string name="summary_about_credits">Wysie, ChainsDD, geesun, niuchl, rac2030, sileht and the rest of XDA! :)</string>
+        
+    <!-- Default Phone Tab and T9 strings -->
+    <string name="title_default_phone_tab">Domyślna zakładka</string>
+    <string name="summary_default_phone_tab">Domyślna zakładka otwierana po starcie aplikacji</string>
+    <string name="default_phone_tab_last_used">Ostatnio używana zakładka (domyślnie)</string>
+    <string name="default_phone_tab_last_viewed">Ostatnio aktywna</string>
+    <string name="default_phone_tab_phone">Telefon</string>
+    <string name="default_phone_tab_call_log">Rejestr</string>
+    <string name="default_phone_tab_contacts">Kontakty</string>
+    <string name="default_phone_tab_favorites">Ulubione</string>
+    <string name="t9_sort_title">Tryb sortowania T9</string>
+    <string name="t9_sort_summary">Wybierz trzyb sortowania T9</string>
+    <string name="t9_sort_name">Sortuj według Nazwy</string>
+    <string name="t9_sort_number">Sortuj według Numeru</string>
+    <string name="t9_state_title">Użyj trybu T9</string>
+    <string name="t9_state_summary">Użyj trybu T9 do szukania</string>
+    <string name="t9_dial_click_title">Zadzwoń pod wybrany numer</string>
+    <string name="t9_dial_click_summary">Zadzwoń pod wybranu numer wyszukany za pomocą trybu T9</string>
 </resources>
