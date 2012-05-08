@@ -389,4 +389,13 @@
     <string name="upgrade_out_of_memory_retry" msgid="8431289830472724609">"Повторен опит за надстройка"</string>
     <string name="search_results_for" msgid="8705490885073188513">"Резултати от търсенето на: <xliff:g id="QUERY">%s</xliff:g>"</string>
     <string name="search_results_searching" msgid="7755623475227227314">"Търси се..."</string>
+
+    <string name="t9_map_row_2">2abcабвг</string>
+    <string name="t9_map_row_3">3defдежз</string>
+    <string name="t9_map_row_4">4ghiийкл</string>
+    <string name="t9_map_row_5">5jklмноп</string>
+    <string name="t9_map_row_6">6mnoрсту</string>
+    <string name="t9_map_row_7">7pqrsфхцч</string>
+    <string name="t9_map_row_8">8tuvшщъ</string>
+    <string name="t9_map_row_9">9wxyzьюя</string>
 </resources>
