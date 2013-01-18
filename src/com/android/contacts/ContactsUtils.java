@@ -39,6 +39,7 @@ import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.test.NeededForTesting;
 import com.android.contacts.util.Constants;
+import com.google.common.annotations.VisibleForTesting;
 
 import java.util.List;
 
@@ -221,6 +222,46 @@ public class ContactsUtils {
         // Data is the lookup URI.
         intent.setData(lookupUri);
         return intent;
+    }
+
+    /**
+     * Checks whether two phone numbers resolve to the same phone.
+     */
+    public static boolean phoneNumbersEqual(String number1, String number2) {
+        if (PhoneNumberUtils.isUriNumber(number1) || PhoneNumberUtils.isUriNumber(number2)) {
+            return sipAddressesEqual(number1, number2);
+        } else {
+            return PhoneNumberUtils.compare(number1, number2);
+        }
+    }
+
+    @VisibleForTesting
+    static boolean sipAddressesEqual(String number1, String number2) {
+        if (number1 == null || number2 == null) return number1 == number2;
+
+        int index1 = number1.indexOf('@');
+        final String userinfo1;
+        final String rest1;
+        if (index1 != -1) {
+            userinfo1 = number1.substring(0, index1);
+            rest1 = number1.substring(index1);
+        } else {
+            userinfo1 = number1;
+            rest1 = "";
+        }
+
+        int index2 = number2.indexOf('@');
+        final String userinfo2;
+        final String rest2;
+        if (index2 != -1) {
+            userinfo2 = number2.substring(0, index2);
+            rest2 = number2.substring(index2);
+        } else {
+            userinfo2 = number2;
+            rest2 = "";
+        }
+
+        return userinfo1.equals(userinfo2) && rest1.equalsIgnoreCase(rest2);
     }
 
     /**

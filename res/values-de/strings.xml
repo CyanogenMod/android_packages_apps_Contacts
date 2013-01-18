@@ -581,4 +581,32 @@
     <string name="dialer_ui_title">Anrufeinstellungen</string>
     <string name="dialer_ui_orientation_title">Autorotation verwenden</string>
     <string name="dialer_ui_orientation_summary">Wenn eingeschaltet, werden Systemeinstellungen verwendet</string>
+    <string name="callStatsDetailTitle">Anrufstatistikdetails</string>
+    <string name="callDetailsDurationFormatWithHour"><xliff:g id="hours" example="5">%d</xliff:g> Stunden, <xliff:g id="minutes" example="42">%d</xliff:g> Minuten, <xliff:g id="seconds" example="28">%d</xliff:g> Sekunden</string>
+    <string name="callDetailsDurationFormatWithoutSeconds"><xliff:g id="hours" example="5">%d</xliff:g> Stunden, <xliff:g id="minutes" example="42">%d</xliff:g> Minuten</string>
+    <string name="callDetailsDurationFormatMinuteOnly"><xliff:g id="minutes" example="42">%d</xliff:g> Minuten</string>
+    <string name="call_stats">Anrufstatistik</string>
+    <string name="call_stats_refresh">Aktualisieren</string>
+    <string name="activity_title_call_stats">Anrufstatistik</string>
+    <string name="call_stats_nav_all">Alle</string>
+    <string name="call_stats_nav_incoming">Eingehend</string>
+    <string name="call_stats_nav_outgoing">Ausgehend</string>
+    <string name="call_stats_nav_missed">Entgangen</string>
+    <string name="call_stats_incoming">Eingehend: <xliff:g id="percent">%d</xliff:g>%%</string>
+    <string name="call_stats_outgoing">Ausgehend: <xliff:g id="percent">%d</xliff:g>%%</string>
+    <string name="call_stats_missed">Entgangen: <xliff:g id="call_count">%s</xliff:g></string>
+    <string name="call_stats_header_total">Insgesamt: <xliff:g id="call_count">%s</xliff:g> (<xliff:g id="duration">%s</xliff:g>)</string>
+    <string name="call_stats_header_total_callsonly">Insgesamt: <xliff:g id="call_count">%s</xliff:g></string>
+    <string name="call_stats_header_total_details">Insgesamt: <xliff:g id="duration">%s</xliff:g></string>
+    <string name="call_stats_filter_from">Startdatum</string>
+    <string name="call_stats_filter_to">Enddatum</string>
+    <string name="call_stats_date_filter">Datumsfilter</string>
+    <string name="call_stats_filter_picker_title">Datumsfilter</string>
+    <string name="call_stats_filter_picker_done">Anwenden</string>
+    <string name="call_stats_filter_picker_reset">Zurücksetzen</string>
+    <string name="call_stats_filter_error">Das eingestellte Startdatum liegt hinter dem Enddatum.\nFilter wird ignoriert.</string>
+    <plurals name="call">
+        <item quantity="one">1 Anruf</item>
+        <item quantity="other">%d Anrufe</item>
+    </plurals>
 </resources>
