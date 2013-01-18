@@ -21,7 +21,7 @@ import android.provider.CallLog.Calls;
 import android.telephony.PhoneNumberUtils;
 
 import com.android.common.widget.GroupingListAdapter;
-import com.google.common.annotations.VisibleForTesting;
+import com.android.contacts.ContactsUtils;
 
 /**
  * Groups together calls in the call log.
@@ -67,7 +67,7 @@ public class CallLogGroupBuilder {
             // The number of the current row in the cursor.
             final String currentNumber = cursor.getString(CallLogQuery.NUMBER);
             final int callType = cursor.getInt(CallLogQuery.CALL_TYPE);
-            final boolean sameNumber = equalNumbers(firstNumber, currentNumber);
+            final boolean sameNumber = ContactsUtils.phoneNumbersEqual(firstNumber, currentNumber);
             final boolean shouldGroup;
 
             if (CallLogQuery.isSectionHeader(cursor)) {
@@ -117,43 +117,5 @@ public class CallLogGroupBuilder {
      */
     private void addGroup(int cursorPosition, int size) {
         mGroupCreator.addGroup(cursorPosition, size, false);
-    }
-
-    @VisibleForTesting
-    boolean equalNumbers(String number1, String number2) {
-        if (PhoneNumberUtils.isUriNumber(number1) || PhoneNumberUtils.isUriNumber(number2)) {
-            return compareSipAddresses(number1, number2);
-        } else {
-            return PhoneNumberUtils.compare(number1, number2);
-        }
-    }
-
-    @VisibleForTesting
-    boolean compareSipAddresses(String number1, String number2) {
-        if (number1 == null || number2 == null) return number1 == number2;
-
-        int index1 = number1.indexOf('@');
-        final String userinfo1;
-        final String rest1;
-        if (index1 != -1) {
-            userinfo1 = number1.substring(0, index1);
-            rest1 = number1.substring(index1);
-        } else {
-            userinfo1 = number1;
-            rest1 = "";
-        }
-
-        int index2 = number2.indexOf('@');
-        final String userinfo2;
-        final String rest2;
-        if (index2 != -1) {
-            userinfo2 = number2.substring(0, index2);
-            rest2 = number2.substring(index2);
-        } else {
-            userinfo2 = number2;
-            rest2 = "";
-        }
-
-        return userinfo1.equals(userinfo2) && rest1.equalsIgnoreCase(rest2);
     }
 }

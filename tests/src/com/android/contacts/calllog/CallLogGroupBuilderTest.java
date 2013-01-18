@@ -167,63 +167,6 @@ public class CallLogGroupBuilderTest extends AndroidTestCase {
         assertGroupIs(8, 3, false, mFakeGroupCreator.groups.get(1));
     }
 
-    public void testEqualPhoneNumbers() {
-        // Identical.
-        assertTrue(mBuilder.equalNumbers("6505555555", "6505555555"));
-        assertTrue(mBuilder.equalNumbers("650 555 5555", "650 555 5555"));
-        // Formatting.
-        assertTrue(mBuilder.equalNumbers("6505555555", "650 555 5555"));
-        assertTrue(mBuilder.equalNumbers("6505555555", "(650) 555-5555"));
-        assertTrue(mBuilder.equalNumbers("650 555 5555", "(650) 555-5555"));
-        // Short codes.
-        assertTrue(mBuilder.equalNumbers("55555", "55555"));
-        assertTrue(mBuilder.equalNumbers("55555", "555 55"));
-        // Different numbers.
-        assertFalse(mBuilder.equalNumbers("6505555555", "650555555"));
-        assertFalse(mBuilder.equalNumbers("6505555555", "6505555551"));
-        assertFalse(mBuilder.equalNumbers("650 555 5555", "650 555 555"));
-        assertFalse(mBuilder.equalNumbers("650 555 5555", "650 555 5551"));
-        assertFalse(mBuilder.equalNumbers("55555", "5555"));
-        assertFalse(mBuilder.equalNumbers("55555", "55551"));
-        // SIP addresses.
-        assertTrue(mBuilder.equalNumbers("6505555555@host.com", "6505555555@host.com"));
-        assertTrue(mBuilder.equalNumbers("6505555555@host.com", "6505555555@HOST.COM"));
-        assertTrue(mBuilder.equalNumbers("user@host.com", "user@host.com"));
-        assertTrue(mBuilder.equalNumbers("user@host.com", "user@HOST.COM"));
-        assertFalse(mBuilder.equalNumbers("USER@host.com", "user@host.com"));
-        assertFalse(mBuilder.equalNumbers("user@host.com", "user@host1.com"));
-        // SIP address vs phone number.
-        assertFalse(mBuilder.equalNumbers("6505555555@host.com", "6505555555"));
-        assertFalse(mBuilder.equalNumbers("6505555555", "6505555555@host.com"));
-        assertFalse(mBuilder.equalNumbers("user@host.com", "6505555555"));
-        assertFalse(mBuilder.equalNumbers("6505555555", "user@host.com"));
-        // Nulls.
-        assertTrue(mBuilder.equalNumbers(null, null));
-        assertFalse(mBuilder.equalNumbers(null, "6505555555"));
-        assertFalse(mBuilder.equalNumbers("6505555555", null));
-        assertFalse(mBuilder.equalNumbers(null, "6505555555@host.com"));
-        assertFalse(mBuilder.equalNumbers("6505555555@host.com", null));
-    }
-
-    public void testCompareSipAddresses() {
-        // Identical.
-        assertTrue(mBuilder.compareSipAddresses("6505555555@host.com", "6505555555@host.com"));
-        assertTrue(mBuilder.compareSipAddresses("user@host.com", "user@host.com"));
-        // Host is case insensitive.
-        assertTrue(mBuilder.compareSipAddresses("6505555555@host.com", "6505555555@HOST.COM"));
-        assertTrue(mBuilder.compareSipAddresses("user@host.com", "user@HOST.COM"));
-        // Userinfo is case sensitive.
-        assertFalse(mBuilder.compareSipAddresses("USER@host.com", "user@host.com"));
-        // Different hosts.
-        assertFalse(mBuilder.compareSipAddresses("user@host.com", "user@host1.com"));
-        // Different users.
-        assertFalse(mBuilder.compareSipAddresses("user1@host.com", "user@host.com"));
-        // Nulls.
-        assertTrue(mBuilder.compareSipAddresses(null, null));
-        assertFalse(mBuilder.compareSipAddresses(null, "6505555555@host.com"));
-        assertFalse(mBuilder.compareSipAddresses("6505555555@host.com", null));
-    }
-
     /** Creates (or recreates) the cursor used to store the call log content for the tests. */
     private void createCursor() {
         mCursor = new MatrixCursor(CallLogQuery.EXTENDED_PROJECTION);
