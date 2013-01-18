@@ -40,4 +40,10 @@
     <item>#</item>
     <item>+</item>
   </string-array>
+  <string-array name="call_stats_nav_items">
+    <item>@string/call_stats_nav_all</item>
+    <item>@string/call_stats_nav_incoming</item>
+    <item>@string/call_stats_nav_outgoing</item>
+    <item>@string/call_stats_nav_missed</item>
+  </string-array>
 </resources>

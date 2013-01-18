@@ -110,4 +110,11 @@
     <declare-styleable name="Favorites">
         <attr name="favorites_padding_bottom" format="dimension" />
     </declare-styleable>
+
+    <declare-styleable name="LinearColorBar">
+        <attr name="redColor" format="color" />
+        <attr name="greenColor" format="color" />
+        <attr name="blueColor" format="color" />
+        <attr name="backgroundColor" format="color" />
+    </declare-styleable>
 </resources>
