@@ -589,6 +589,9 @@
     <!-- Title bar for call detail screen -->
     <string name="callDetailTitle">Call details</string>
 
+    <!-- Title bar for call stat detail screen -->
+    <string name="callStatsDetailTitle">Call stat details</string>
+
     <!-- Toast for call detail screen when couldn't read the requested details -->
     <string name="toast_call_detail_error">Couldn\'t read details for the requested call.</string>
 
@@ -616,8 +619,8 @@
     <!-- Action string for returning a missed call in the call log -->
     <string name="returnCall">Return call</string>
 
-    <!-- A nicely formatted call duration displayed when viewing call details. For example "42 mins 28 secs" -->
-    <string name="callDetailsDurationFormat"><xliff:g id="minutes" example="42">%s</xliff:g> mins <xliff:g id="seconds" example="28">%s</xliff:g> secs</string>
+    <!-- A nicely formatted call duration displayed when viewing call details. For example "5 hrs 42 mins 28 secs" -->
+    <string name="callDetailsDurationFormat"><xliff:g id="hours" example="5">%s</xliff:g> hrs <xliff:g id="minutes" example="42">%s</xliff:g> mins <xliff:g id="seconds" example="28">%s</xliff:g> secs</string>
 
     <!-- The text displayed on the divider for the Favorites tab in People app indicating that items below it are frequently contacted [CHAR LIMIT = 39] -->
     <string name="favoritesFrequentContacted">Frequently contacted</string>
@@ -1021,6 +1024,9 @@
 
     <!-- Menu item label for call settings [CHAR LIMIT=30] -->
     <string name="call_settings">Settings</string>
+
+    <string name="call_stats">Call statistics</string>
+    <string name="call_stats_refresh">Refresh</string>
 
     <!-- Title for the sms disambiguation dialog -->
     <string name="sms_disambig_title">Choose number</string>
@@ -1473,6 +1479,8 @@
     <!-- Title of the settings activity [CHAR LIMIT=64] -->
     <string name="activity_title_settings">Settings</string>
 
+    <string name="activity_title_call_stats">Call statistics</string>
+
     <!-- Title of the activity that allows the uesr to filter the list of contacts displayed according to account [CHAR LIMIT=25] -->
     <string name="activity_title_contacts_filter">Contacts to display</string>
 
@@ -1875,4 +1883,21 @@ connection to the voicemail server is lost. [CHAR LIMIT=64] -->
          [CHAR LIMIT=NONE] -->
     <string name="action_menu_overflow_description" msgid="2295659037509008453">More options</string>
 
+    <string name="call_stats_nav_all">All</string>
+    <string name="call_stats_nav_incoming">Incoming</string>
+    <string name="call_stats_nav_outgoing">Outgoing</string>
+    <string name="call_stats_nav_missed">Missed</string>
+    <string name="call_stats_header_total">Total:</string>
+    <string name="call_stats_filter_from">Start date</string>
+    <string name="call_stats_filter_to">End date</string>
+    <string name="call_stats_date_filter">Date filter</string>
+    <string name="call_stats_filter_picker_title">Filter range</string>
+    <string name="call_stats_filter_picker_done">Apply filter</string>
+    <string name="call_stats_filter_picker_reset">Reset filter</string>
+    <string name="call_stats_filter_error">Start date is greater than end date, ignoring filter.</string>
+    <plurals name="call">
+        <item quantity="one">1 call</item>
+        <item quantity="other">%d calls</item>
+    </plurals>
+    
 </resources>
