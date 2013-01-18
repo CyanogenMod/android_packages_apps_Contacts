@@ -220,4 +220,61 @@ public class ContactsUtilsTests extends AndroidTestCase {
         assertFalse("22", ContactsUtils.areIntentActionEqual(new Intent(), new Intent("b")));
         assertFalse("23", ContactsUtils.areIntentActionEqual(new Intent("a"), new Intent("b")));
     }
+
+    public void testEqualPhoneNumbers() {
+        // Identical.
+        assertTrue(ContactsUtils.phoneNumbersEqual("6505555555", "6505555555"));
+        assertTrue(ContactsUtils.phoneNumbersEqual("650 555 5555", "650 555 5555"));
+        // Formatting.
+        assertTrue(ContactsUtils.phoneNumbersEqual("6505555555", "650 555 5555"));
+        assertTrue(ContactsUtils.phoneNumbersEqual("6505555555", "(650) 555-5555"));
+        assertTrue(ContactsUtils.phoneNumbersEqual("650 555 5555", "(650) 555-5555"));
+        // Short codes.
+        assertTrue(ContactsUtils.phoneNumbersEqual("55555", "55555"));
+        assertTrue(ContactsUtils.phoneNumbersEqual("55555", "555 55"));
+        // Different numbers.
+        assertFalse(ContactsUtils.phoneNumbersEqual("6505555555", "650555555"));
+        assertFalse(ContactsUtils.phoneNumbersEqual("6505555555", "6505555551"));
+        assertFalse(ContactsUtils.phoneNumbersEqual("650 555 5555", "650 555 555"));
+        assertFalse(ContactsUtils.phoneNumbersEqual("650 555 5555", "650 555 5551"));
+        assertFalse(ContactsUtils.phoneNumbersEqual("55555", "5555"));
+        assertFalse(ContactsUtils.phoneNumbersEqual("55555", "55551"));
+        // SIP addresses.
+        assertTrue(ContactsUtils.phoneNumbersEqual("6505555555@host.com", "6505555555@host.com"));
+        assertTrue(ContactsUtils.phoneNumbersEqual("6505555555@host.com", "6505555555@HOST.COM"));
+        assertTrue(ContactsUtils.phoneNumbersEqual("user@host.com", "user@host.com"));
+        assertTrue(ContactsUtils.phoneNumbersEqual("user@host.com", "user@HOST.COM"));
+        assertFalse(ContactsUtils.phoneNumbersEqual("USER@host.com", "user@host.com"));
+        assertFalse(ContactsUtils.phoneNumbersEqual("user@host.com", "user@host1.com"));
+        // SIP address vs phone number.
+        assertFalse(ContactsUtils.phoneNumbersEqual("6505555555@host.com", "6505555555"));
+        assertFalse(ContactsUtils.phoneNumbersEqual("6505555555", "6505555555@host.com"));
+        assertFalse(ContactsUtils.phoneNumbersEqual("user@host.com", "6505555555"));
+        assertFalse(ContactsUtils.phoneNumbersEqual("6505555555", "user@host.com"));
+        // Nulls.
+        assertTrue(ContactsUtils.phoneNumbersEqual(null, null));
+        assertFalse(ContactsUtils.phoneNumbersEqual(null, "6505555555"));
+        assertFalse(ContactsUtils.phoneNumbersEqual("6505555555", null));
+        assertFalse(ContactsUtils.phoneNumbersEqual(null, "6505555555@host.com"));
+        assertFalse(ContactsUtils.phoneNumbersEqual("6505555555@host.com", null));
+    }
+
+    public void testCompareSipAddresses() {
+        // Identical.
+        assertTrue(ContactsUtils.sipAddressesEqual("6505555555@host.com", "6505555555@host.com"));
+        assertTrue(ContactsUtils.sipAddressesEqual("user@host.com", "user@host.com"));
+        // Host is case insensitive.
+        assertTrue(ContactsUtils.sipAddressesEqual("6505555555@host.com", "6505555555@HOST.COM"));
+        assertTrue(ContactsUtils.sipAddressesEqual("user@host.com", "user@HOST.COM"));
+        // Userinfo is case sensitive.
+        assertFalse(ContactsUtils.sipAddressesEqual("USER@host.com", "user@host.com"));
+        // Different hosts.
+        assertFalse(ContactsUtils.sipAddressesEqual("user@host.com", "user@host1.com"));
+        // Different users.
+        assertFalse(ContactsUtils.sipAddressesEqual("user1@host.com", "user@host.com"));
+        // Nulls.
+        assertTrue(ContactsUtils.sipAddressesEqual(null, null));
+        assertFalse(ContactsUtils.sipAddressesEqual(null, "6505555555@host.com"));
+        assertFalse(ContactsUtils.sipAddressesEqual("6505555555@host.com", null));
+    }
 }

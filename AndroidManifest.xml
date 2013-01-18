@@ -664,6 +664,31 @@
             </intent-filter>
         </activity>
 
+        <!-- "Call Statistics" UI, used only on voice-capable phone devices. -->
+        <activity android:name=".callstats.CallStatsActivity"
+                android:taskAffinity="android.task.contacts.phone"
+                android:icon="@mipmap/ic_launcher_phone"
+                android:label="@string/activity_title_call_stats"
+                android:configChanges="orientation|screenSize|keyboardHidden"
+                android:theme="@style/CallStatsActivityTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".callstats.CallStatsDetailActivity"
+            android:label="@string/callStatsDetailTitle"
+            android:theme="@style/CallDetailActivityTheme"
+            android:screenOrientation="portrait"
+            android:icon="@mipmap/ic_launcher_phone"
+            android:taskAffinity="android.task.contacts.phone" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <service
             android:name=".calllog.CallLogNotificationsService"
             android:exported="false"

@@ -20,10 +20,12 @@ import android.net.Uri;
 import android.provider.CallLog.Calls;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 
+import com.android.contacts.CallDetailHeader;
+
 /**
  * The details of a phone call to be shown in the UI.
  */
-public class PhoneCallDetails {
+public class PhoneCallDetails implements CallDetailHeader.Data {
     /** The number of the other party involved in the call. */
     public final CharSequence number;
     /** The formatted version of {@link #number}. */
@@ -82,5 +84,30 @@ public class PhoneCallDetails {
         this.numberLabel = numberLabel;
         this.contactUri = contactUri;
         this.photoUri = photoUri;
+    }
+
+    @Override
+    public CharSequence getName() {
+        return name;
+    }
+    @Override
+    public CharSequence getNumber() {
+        return number;
+    }
+    @Override
+    public int getNumberType() {
+        return numberType;
+    }
+    @Override
+    public CharSequence getNumberLabel() {
+        return numberLabel;
+    }
+    @Override
+    public CharSequence getFormattedNumber() {
+        return formattedNumber;
+    }
+    @Override
+    public Uri getContactUri() {
+        return contactUri;
     }
 }
