@@ -253,4 +253,7 @@
 
     <!-- Min with of fake menu buttons, which should be same as ActionBar's one -->
     <dimen name="fake_menu_button_min_width">56dip</dimen>
+
+    <!-- Size of the pie chart in the call stats detail activity -->
+    <dimen name="call_stats_details_chart_size">140dip</dimen>
 </resources>
