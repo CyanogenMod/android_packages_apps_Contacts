@@ -581,4 +581,52 @@
     <string name="dialer_ui_title">Anrufeinstellungen</string>
     <string name="dialer_ui_orientation_title">Autorotation verwenden</string>
     <string name="dialer_ui_orientation_summary">Wenn eingeschaltet, werden Systemeinstellungen verwendet</string>
+    <string name="callStatsDetailTitle">Anrufstatistikdetails</string>
+    <string name="call_stats">Anrufstatistik</string>
+    <string name="call_stats_refresh">Aktualisieren</string>
+    <string name="activity_title_call_stats">Anrufstatistik</string>
+    <string name="call_stats_nav_all">Alle</string>
+    <string name="call_stats_nav_incoming">Eingehend</string>
+    <string name="call_stats_nav_outgoing">Ausgehend</string>
+    <string name="call_stats_nav_missed">Entgangen</string>
+    <string name="call_stats_incoming">Eingehend: <xliff:g id="percent">%d</xliff:g>%% (<xliff:g id="call_count">%s</xliff:g>)</string>
+    <string name="call_stats_outgoing">Ausgehend: <xliff:g id="percent">%d</xliff:g>%% (<xliff:g id="call_count">%s</xliff:g>)</string>
+    <string name="call_stats_missed">Entgangen: <xliff:g id="call_count">%s</xliff:g></string>
+    <string name="call_stats_header_total">Insgesamt: <xliff:g id="call_count">%s</xliff:g> (<xliff:g id="duration">%s</xliff:g>)</string>
+    <string name="call_stats_header_total_callsonly">Insgesamt: <xliff:g id="call_count">%s</xliff:g></string>
+    <string name="call_stats_header_total_details">Insgesamt: <xliff:g id="duration">%s</xliff:g></string>
+    <string name="call_stats_filter_from">Startdatum</string>
+    <string name="call_stats_filter_to">Enddatum</string>
+    <string name="call_stats_date_filter">Datumsfilter</string>
+    <string name="call_stats_filter_picker_title">Datumsfilter</string>
+    <string name="call_stats_filter_picker_done">Anwenden</string>
+    <string name="call_stats_filter_picker_reset">Zurücksetzen</string>
+    <string name="call_stats_filter_error">Das eingestellte Startdatum liegt hinter dem Enddatum.\nFilter wird ignoriert.</string>
+    <plurals name="call">
+        <item quantity="one">1 Anruf</item>
+        <item quantity="other">%d Anrufe</item>
+    </plurals>
+
+    <string-array name="call_stats_duration">
+        <item><xliff:g id="seconds" example="2 secs">%3$s</xliff:g></item>
+        <item><xliff:g id="minutes" example="2 mins">%2$s</xliff:g></item>
+        <item><xliff:g id="minutes" example="2 mins">%2$s</xliff:g>, <xliff:g id="seconds" example="2 secs">%3$s</xliff:g></item>
+        <item><xliff:g id="hours" example="2 hrs">%1$s</xliff:g></item>
+        <item><xliff:g id="hours" example="2 hrs">%1$s</xliff:g>, <xliff:g id="seconds" example="2 secs">%3$s</xliff:g></item>
+        <item><xliff:g id="hours" example="2 hrs">%1$s</xliff:g>, <xliff:g id="minutes" example="2 mins">%2$s</xliff:g></item>
+         <item><xliff:g id="hours" example="2 hrs">%1$s</xliff:g>, <xliff:g id="minutes" example="2 mins">%2$s</xliff:g>, <xliff:g id="seconds" example="2 secs">%3$s</xliff:g></item>
+    </string-array>
+
+    <plurals name="hour">
+        <item quantity="one">1 Stunde</item>
+        <item quantity="other">%d Stunden</item>
+    </plurals>
+    <plurals name="minute">
+        <item quantity="one">1 Minute</item>
+        <item quantity="other">%d Minuten</item>
+    </plurals>
+    <plurals name="second">
+        <item quantity="one">1 Sekunde</item>
+        <item quantity="other">%d Sekunden</item>
+    </plurals>
 </resources>
