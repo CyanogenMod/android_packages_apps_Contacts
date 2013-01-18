@@ -21,7 +21,7 @@ import android.provider.ContactsContract.PhoneLookup;
 /**
  * The query to look up the {@link ContactInfo} for a given number in the Call Log.
  */
-final class PhoneQuery {
+public final class PhoneQuery {
     public static final String[] _PROJECTION = new String[] {
             PhoneLookup._ID,
             PhoneLookup.DISPLAY_NAME,
