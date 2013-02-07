@@ -182,6 +182,57 @@
     <string name="dialer_returnToInCallScreen" msgid="3719386377550913067">"Torna alla chiamata in corso"</string>
     <string name="dialer_addAnotherCall" msgid="4205688819890074468">"Aggiungi"</string>
     <string name="callDetailTitle" msgid="5340227785196217938">"Dettagli chiamata"</string>
+    <!-- Call statistics start -->
+    <string name="callStatsDetailTitle">Dettagli statistiche chiamate</string>	
+    <string name="call_stats_refresh">Aggiorna</string>
+    <string name="call_stats">Statistiche chiamate</string>
+    <string name="activity_title_call_stats">Statistiche chiamate</string>
+    <string name="call_stats_nav_all">Tutte</string>
+    <string name="call_stats_nav_incoming">In entrata</string>
+    <string name="call_stats_nav_outgoing">In uscita</string>
+    <string name="call_stats_nav_missed">Perse</string>
+    <string name="call_stats_incoming">In entrata: <xliff:g id="percent">%d</xliff:g>%%</string>	
+    <string name="call_stats_outgoing">In uscita: <xliff:g id="percent">%d</xliff:g>%%</string>	
+    <string name="call_stats_missed">Perse</string>	
+    <string name="call_stats_missed_percent">Perse: <xliff:g id="percent">%d</xliff:g>%%</string>	
+    <string name="call_stats_header_total">Totale: <xliff:g id="call_count">%s</xliff:g>, <xliff:g id="duration">%s</xliff:g></string>
+    <string name="call_stats_header_total_callsonly">Totale: <xliff:g id="call_count">%s</xliff:g></string>
+    <string name="call_stats_filter_from">Data di inizio</string>	
+    <string name="call_stats_filter_to">Data di fine</string>	
+    <string name="call_stats_filter_picker_title">Intervallo di filtraggio</string>	
+    <string name="call_stats_date_filter">Modifica intervallo di tempo</string>	
+    <string name="call_stats_reset_filter">Resetta intervallo di tempo</string>	
+    <string name="call_stats_sort_by_duration">Ordina per tempo di chiamata</string>	
+    <string name="call_stats_sort_by_count">Ordina per numero di chiamate</string>	
+    <string-array name="call_stats_duration">
+        <item><xliff:g id="seconds" example="2 secs">%3$s</xliff:g></item>	
+        <item><xliff:g id="minutes" example="2 mins">%2$s</xliff:g></item>	
+        <item><xliff:g id="minutes" example="2 mins">%2$s</xliff:g> <xliff:g id="seconds" example="2 secs">%3$s</xliff:g></item>	
+        <item><xliff:g id="hours" example="2 hrs">%1$s</xliff:g></item>
+        <item><xliff:g id="hours" example="2 hrs">%1$s</xliff:g> <xliff:g id="seconds" example="2 secs">%3$s</xliff:g></item>
+        <item><xliff:g id="hours" example="2 hrs">%1$s</xliff:g> <xliff:g id="minutes" example="2 mins">%2$s</xliff:g></item>	
+        <item><xliff:g id="hours" example="2 hrs">%1$s</xliff:g> <xliff:g id="minutes" example="2 mins">%2$s</xliff:g> <xliff:g id="seconds" example="2 secs">%3$s</xliff:g></item>
+    </string-array>
+    <plurals name="hour">
+        <item quantity="one">1 ora</item>
+        <item quantity="other">%d ore</item>
+    </plurals>	
+    
+    <plurals name="minute">
+        <item quantity="one">1 minuto</item>
+        <item quantity="other">%d minuti</item>
+    </plurals>
+    
+    <plurals name="second">
+        <item quantity="one">1 secondo</item>	
+        <item quantity="other">%d secondi</item>	
+    </plurals>
+	
+    <plurals name="call">
+       <item quantity="one">1 chiamata</item>
+       <item quantity="other">%d chiamate</item>	
+    </plurals>
+    <!--call statitics end-->
     <string name="toast_call_detail_error" msgid="7200975244804730096">"Impossibile leggere i dettagli per la chiamata richiesta."</string>
     <string name="type_incoming" msgid="6502076603836088532">"Chiamata ricevuta"</string>
     <string name="type_outgoing" msgid="343108709599392641">"Chiamata effettuata"</string>
