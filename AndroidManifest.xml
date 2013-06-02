@@ -66,6 +66,18 @@
             </intent-filter>
         </activity>
 
+        <!-- Added by ferhung-->
+        <activity-alias android:name="RecentCallsListActivity" 
+		android:icon="@drawable/ic_launcher_recentcall"
+		android:label="@string/recentCallsIconLabel"
+		android:targetActivity =".RecentCallsListActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
         <!-- Tab container for all tabs -->
         <activity android:name="DialtactsActivity"
             android:label="@string/launcherDialer"
