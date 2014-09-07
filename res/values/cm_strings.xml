@@ -97,7 +97,11 @@
     <string name="contactsLocalGroupsLabel">Local groups</string>
     <string name="select_all">All</string>
     <string name="action_done">Done</string>
-    <string name="contacts_selected">selected</string>
+
+    <plurals name="contacts_selected">
+        <item quantity="one">%d contact selected</item>
+        <item quantity="other">%d contacts selected</item>
+    </plurals>
 
     <string name="delete_call_title">Delete call logs</string>
     <string name="delete_call_message">Deleting call logs\u2026</string>

@@ -40,31 +40,28 @@ import android.accounts.AccountManager;
 import android.content.AsyncQueryHandler;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
+import android.content.ContentProviderOperation;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.ContentProviderOperation;
 import android.content.DialogInterface;
-import android.content.IntentFilter;
-import android.content.DialogInterface.OnCancelListener;
-import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.OperationApplicationException;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.net.Uri.Builder;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.provider.CallLog;
+import android.provider.CallLog.Calls;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.ContactCounts;
-import android.provider.CallLog.Calls;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.RawContacts;
-import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
+import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.RawContacts;
 import android.telephony.MSimTelephonyManager;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
@@ -77,7 +74,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
@@ -89,25 +85,26 @@ import android.widget.SectionIndexer;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.contacts.activities.PeopleActivity;
 import com.android.contacts.R;
+import com.android.contacts.activities.PeopleActivity;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.SimContactsConstants;
 import com.android.contacts.common.SimContactsOperation;
 import com.android.contacts.common.list.AccountFilterActivity;
 import com.android.contacts.common.list.ContactListFilter;
+import com.android.contacts.common.list.ContactListItemView;
 import com.android.contacts.common.list.ContactsSectionIndexer;
 import com.android.contacts.common.list.DefaultContactListAdapter;
 import com.android.contacts.common.MoreContactUtils;
 import com.android.contacts.common.model.account.SimAccountType;
 import com.android.internal.telephony.MSimConstants;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 
-public class MultiPickContactActivity extends ListActivity implements OnTouchListener {
+public class MultiPickContactActivity extends ListActivity implements
+        View.OnTouchListener, DialogInterface.OnClickListener, DialogInterface.OnKeyListener {
     private final static String TAG = "MultiPickContactActivity";
     private final static boolean DEBUG = true;
 
@@ -261,9 +258,7 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
     protected static final int SUB2 = 1;
     private ActionBar mBar;
     private MenuItem mDone;
-    private Context mContext;
-    private Intent mIntent;
-    private AccountManager accountManager;
+    private AccountManager mAccountManager;
     private int mSubscription = -1;
 
     private static final String[] COLUMN_NAMES = new String[] {
@@ -292,18 +287,17 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
     private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            // TODO Auto-generated method stub
             if (intent.getAction().equals(Intent.ACTION_AIRPLANE_MODE_CHANGED)) {
                 updateContent();
 
                 // If now is airplane mode, should cancel import sim contacts
-                if (isPickSim() && MoreContactUtils.isAPMOnAndSIMPowerDown(mContext)) {
+                if (isPickSim() && MoreContactUtils.isAPMOnAndSIMPowerDown(context)) {
                     cancelSimContactsImporting();
                 }
             }
         }
     };
-    /** Called when the activity is first created. */
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -311,17 +305,14 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
         String action = intent.getAction();
         boolean isContact = intent.getBooleanExtra(IS_CONTACT,false);
         mAllowSelectAll = !intent.getBooleanExtra(IS_SELECT_ALL_DISALLOWED, false);
+
         if (Intent.ACTION_DELETE.equals(action)) {
             mMode = MODE_DEFAULT_CONTACT;
             setTitle(R.string.menu_deleteContact);
         } else if (Intent.ACTION_GET_CONTENT.equals(action)) {
             mMode = MODE_DEFAULT_CONTACT;
         } else if (ACTION_MULTI_PICK.equals(action)) {
-            if (!isContact) {
-                mMode = MODE_DEFAULT_PHONE;
-            } else {
-                mMode = MODE_DEFAULT_CONTACT;
-            }
+            mMode = isContact ? MODE_DEFAULT_CONTACT : MODE_DEFAULT_PHONE;
         } else if (ACTION_MULTI_PICK_EMAIL.equals(action)) {
             mMode = MODE_DEFAULT_EMAIL;
         } else if (ACTION_MULTI_PICK_CALL.equals(action)) {
@@ -348,11 +339,13 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
         getListView().setAdapter(mAdapter);
         mQueryHandler = new QueryHandler(this);
         mSimContactsOperation = new SimContactsOperation(this);
-        mContext = getApplicationContext();
-        accountManager = AccountManager.get(mContext);
+        mAccountManager = AccountManager.get(this);
+
         mBar = getActionBar();
         mBar.setHomeButtonEnabled(true);
         mBar.setDisplayHomeAsUpEnabled(true);
+        mBar.setDisplayShowTitleEnabled(true);
+
         startQuery();
         //register receiver.
         IntentFilter filter = new IntentFilter();
@@ -369,11 +362,20 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
         mDone.setVisible(false);
         mSelectAllCheck = menu.findItem(R.id.select_all_check);
         mSelectAllCheck.setVisible(mAllowSelectAll);
-        mSearchView = (SearchView) menu.findItem(R.id.search)
-                .getActionView();
+
+        mSearchView = (SearchView) menu.findItem(R.id.search).getActionView();
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                updateState(query);
+                return true;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                updateState(newText);
+                return true;
+            }
+            private void updateState(String query) {
                 if (!TextUtils.isEmpty(query)) {
                     if (!isSearchMode()) {
                         enterSearchMode();
@@ -382,20 +384,6 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
                     exitSearchMode(true);
                 }
                 doFilter(query);
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                if (!TextUtils.isEmpty(newText)) {
-                    if (!isSearchMode()) {
-                        enterSearchMode();
-                    }
-                } else if (isSearchMode()) {
-                    exitSearchMode(true);
-                }
-                doFilter(newText);
-                return true;
             }
         });
         return super.onCreateOptionsMenu(menu);
@@ -406,11 +394,7 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
         switch (item.getItemId()) {
             case R.id.select_all_check:
                 mSelectAllCheck.setChecked(!mSelectAllCheck.isChecked());
-                if (mSelectAllCheck.isChecked()) {
-                    selectAll(true);
-                } else {
-                    selectAll(false);
-                }
+                selectAll(mSelectAllCheck.isChecked());
                 return true;
             case R.id.done:
                 if (isSearchMode()) {
@@ -419,49 +403,27 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
                 if (mMode == MODE_DEFAULT_CONTACT) {
                     if (ACTION_MULTI_PICK.equals(getIntent().getAction())) {
                         if (mChoiceSet.size() > MAX_CONTACTS_NUM_TO_SELECT_ONCE) {
-                            Toast.makeText(
-                                    mContext,
-                                    mContext.getString(R.string.too_many_contacts_add_to_group,
-                                            MAX_CONTACTS_NUM_TO_SELECT_ONCE), Toast.LENGTH_SHORT)
-                                    .show();
+                            String text = getString(R.string.too_many_contacts_add_to_group,
+                                    MAX_CONTACTS_NUM_TO_SELECT_ONCE);
+                            Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
                         } else {
-                            Intent intent = new Intent();
-                            Bundle bundle = new Bundle();
-                            bundle.putBundle(PeopleActivity.RESULT_KEY, mChoiceSet);
-                            intent.putExtras(bundle);
-                            this.setResult(RESULT_OK, intent);
-                            finish();
+                            setResultAndFinish();
                         }
                     } else if (mChoiceSet.size() > 0) {
                         showDialog(R.id.dialog_delete_contact_confirmation);
                     }
                 } else if (mMode == MODE_DEFAULT_PHONE) {
-                    Intent intent = new Intent();
-                    Bundle bundle = new Bundle();
-                    bundle.putBundle(PeopleActivity.RESULT_KEY, mChoiceSet);
-                    intent.putExtras(bundle);
-                    this.setResult(RESULT_OK, intent);
-                    finish();
+                    setResultAndFinish();
                 } else if (mMode == MODE_DEFAULT_SIM) {
                     if (mChoiceSet.size() > 0) {
                         showDialog(R.id.dialog_import_sim_contact_confirmation);
                     }
                 } else if (mMode == MODE_DEFAULT_EMAIL) {
-                    Intent intent = new Intent();
-                    Bundle bundle = new Bundle();
-                    bundle.putBundle(PeopleActivity.RESULT_KEY, mChoiceSet);
-                    intent.putExtras(bundle);
-                    this.setResult(RESULT_OK, intent);
-                    finish();
+                    setResultAndFinish();
                 } else if (mMode == MODE_DEFAULT_CALL) {
                     if (mChoiceSet.size() > 0) {
                         if (mSelectCallLog) {
-                            Intent intent = new Intent();
-                            Bundle bundle = new Bundle();
-                            bundle.putBundle(PeopleActivity.RESULT_KEY, mChoiceSet);
-                            intent.putExtras(bundle);
-                            this.setResult(RESULT_OK, intent);
-                            finish();
+                            setResultAndFinish();
                         } else {
                             showDialog(DIALOG_DEL_CALL);
                         }
@@ -475,6 +437,15 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
         return super.onOptionsItemSelected(item);
     }
 
+    private void setResultAndFinish() {
+        Intent intent = new Intent();
+        Bundle bundle = new Bundle();
+        bundle.putBundle(PeopleActivity.RESULT_KEY, mChoiceSet);
+        intent.putExtras(bundle);
+        setResult(RESULT_OK, intent);
+        finish();
+    }
+
     private boolean isSearchMode() {
         return (mMode & MODE_MASK_SEARCH) == MODE_MASK_SEARCH;
     }
@@ -485,38 +456,35 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
         CheckBox checkBox = (CheckBox) v.findViewById(R.id.pick_contact_check);
         boolean isChecked = !checkBox.isChecked();
         checkBox.setChecked(isChecked);
+
         if (isChecked) {
             String[] value = null;
             ContactItemCache cache = (ContactItemCache) v.getTag();
             if (isPickContact()) {
                 value = new String[] {
-                        cache.lookupKey, String.valueOf(cache.id)
+                    cache.lookupKey, String.valueOf(cache.id)
                 };
             } else if (isPickPhone()) {
                 value = new String[] {
-                        cache.name, cache.number, cache.type,
-                        cache.label, cache.contact_id
+                    cache.name, cache.number, cache.type,
+                    cache.label, cache.contact_id
                 };
             } else if (isPickEmail()) {
                 value = new String[] {
-                        cache.name, cache.email
+                    cache.name, cache.email
                 };
             } else if (isPickSim()) {
                 value = new String[] {
-                        cache.name, cache.number, cache.email, cache.anrs
+                    cache.name, cache.number, cache.email, cache.anrs
                 };
-            } else if (isPickCall()) {
-                if (mSelectCallLog) {
-                    value = new String[] {
-                            cache.name, cache.number
-                    };
-                }
+            } else if (isPickCall() && mSelectCallLog) {
+                value = new String[] {
+                    cache.name, cache.number
+                };
             }
             mChoiceSet.putStringArray(String.valueOf(id), value);
-            if (!isSearchMode()) {
-                if (mChoiceSet.size() == mAdapter.getCount()) {
-                    mSelectAllCheck.setChecked(true);
-                }
+            if (!isSearchMode() && mChoiceSet.size() == mAdapter.getCount()) {
+                mSelectAllCheck.setChecked(true);
             }
         } else {
             mChoiceSet.remove(String.valueOf(id));
@@ -539,12 +507,13 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
     }
 
     private String updateCount() {
-        if (0 == mChoiceSet.size()) {
+        if (mChoiceSet.isEmpty()) {
             mDone.setVisible(false);
             return null;
         } else {
             mDone.setVisible(true);
-            return mChoiceSet.size() + " " + getString(R.string.contacts_selected);
+            return getResources().getQuantityString(R.plurals.contacts_selected,
+                    mChoiceSet.size(), mChoiceSet.size());
         }
     }
 
@@ -570,50 +539,45 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
         mBar.setSubtitle(updateCount());
     }
 
+    @Override
     protected Dialog onCreateDialog(int id, Bundle bundle) {
         switch (id) {
-            case R.id.dialog_delete_contact_confirmation: {
+            case R.id.dialog_delete_contact_confirmation:
                 return new AlertDialog.Builder(this)
                         .setTitle(R.string.deleteConfirmation_title)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
                         .setMessage(getResources().getQuantityString(
                                 R.plurals.ContactMultiDeleteConfirmation,
                                 mChoiceSet.size(), mChoiceSet.size()))
                         .setNegativeButton(android.R.string.cancel, null)
-                        .setPositiveButton(android.R.string.ok,
-                                new DeleteClickListener()).create();
-            }
-            case DIALOG_DEL_CALL: {
-                return new AlertDialog.Builder(this).setTitle(R.string.title_del_call)
-                        .setIcon(android.R.drawable.ic_dialog_alert).setMessage(
-                                R.string.delete_call_alert).setNegativeButton(
-                                android.R.string.cancel, null).setPositiveButton(
-                                android.R.string.ok, new DeleteClickListener()).create();
-            }
-            case R.id.dialog_import_sim_contact_confirmation: {
+                        .setPositiveButton(android.R.string.ok, this)
+                        .create();
+            case DIALOG_DEL_CALL:
+                return new AlertDialog.Builder(this)
+                        .setTitle(R.string.title_del_call)
+                        .setMessage(R.string.delete_call_alert)
+                        .setNegativeButton(android.R.string.cancel, null)
+                        .setPositiveButton(android.R.string.ok, this)
+                        .create();
+            case R.id.dialog_import_sim_contact_confirmation:
                 return new AlertDialog.Builder(this)
                         .setTitle(R.string.importConfirmation_title)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
                         .setMessage(getResources().getQuantityString(
                                 R.plurals.ContactMultiImportConfirmation,
                                 mChoiceSet.size(), mChoiceSet.size()))
                         .setNegativeButton(android.R.string.cancel, null)
-                        .setPositiveButton(android.R.string.ok,
-                                new DeleteClickListener()).create();
-            }
-
+                        .setPositiveButton(android.R.string.ok, this)
+                        .create();
         }
 
         return super.onCreateDialog(id, bundle);
     }
 
-    private class DeleteContactsThread extends Thread
-            implements OnCancelListener, DialogInterface.OnClickListener {
-
+    private class DeleteContactsThread extends Thread implements
+            DialogInterface.OnCancelListener, DialogInterface.OnClickListener {
         boolean mCanceled = false;
         private String name = null;
         private String number = null;
-        final String[] PROJECTION = new String[] {
+        private final String[] PROJECTION = new String[] {
                 Phone.CONTACT_ID,
                 Phone.NUMBER,
                 Phone.DISPLAY_NAME
@@ -622,7 +586,6 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
         private final int COLUMN_NAME = 2;
 
         private ArrayList<ContentProviderOperation> mOpsCalls = null;
-
         private ArrayList<ContentProviderOperation> mOpsContacts = null;
 
         public DeleteContactsThread() {
@@ -630,6 +593,7 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
 
         @Override
         public void run() {
+            final Context context = MultiPickContactActivity.this;
             final ContentResolver resolver = getContentResolver();
 
             // The mChoiceSet object will change when activity restart, but
@@ -639,8 +603,7 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
             Set<String> keySet = choiceSet.keySet();
             Iterator<String> it = keySet.iterator();
 
-            android.content.ContentProviderOperation.Builder builder = null;
-
+            ContentProviderOperation.Builder builder = null;
             ContentProviderOperation cpo = null;
 
             // Current contact count we can delete.
@@ -663,18 +626,16 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
                 } else {
                     uri = Uri.withAppendedPath(Contacts.CONTENT_URI, id);
                     long longId = Long.parseLong(id);
-                    int subscription =
-                            mSimContactsOperation.getSimSubscription(longId);
+                    int subscription = mSimContactsOperation.getSimSubscription(longId);
 
                     if (subscription == MSimConstants.SUB1 || subscription == MSimConstants.SUB2) {
-                        if (MoreContactUtils.isAPMOnAndSIMPowerDown(mContext)) {
+                        if (MoreContactUtils.isAPMOnAndSIMPowerDown(context)) {
                             break;
                         }
                         ContentValues values =
                                 mSimContactsOperation.getSimAccountValues(longId);
                         log("values is : " + values + "; sub is " + subscription);
-                        int result = mSimContactsOperation.delete(values, subscription);
-                        if (result == 0) {
+                        if (mSimContactsOperation.delete(values, subscription) == 0) {
                             mProgressDialog.incrementProgressBy(1);
                             continue;
                         }
@@ -690,7 +651,7 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
                 if (count % BATCH_DELETE_CONTACT_NUMBER == 0) {
                     batchDelete();
                 }
-                count ++;
+                count++;
             }
 
             batchDelete();
@@ -706,8 +667,8 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
          */
         private void batchDelete() {
             try {
-                 mContext.getContentResolver().applyBatch(CallLog.AUTHORITY, mOpsCalls);
-                 mContext.getContentResolver().applyBatch(ContactsContract.AUTHORITY, mOpsContacts);
+                 getContentResolver().applyBatch(CallLog.AUTHORITY, mOpsCalls);
+                 getContentResolver().applyBatch(ContactsContract.AUTHORITY, mOpsContacts);
                  mOpsCalls.clear();
                  mOpsContacts.clear();
              } catch (RemoteException e) {
@@ -717,74 +678,68 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
              }
         }
 
+        @Override
         public void onCancel(DialogInterface dialog) {
             mCanceled = true;
             Log.d(TAG, "DeleteContactsThread onCancel, progress:" + mProgressDialog.getProgress());
             //  Give a toast show to tell user delete termination
         }
 
+        @Override
         public void onClick(DialogInterface dialog, int which) {
             if (which == DialogInterface.BUTTON_NEGATIVE) {
                 mCanceled = true;
                 mProgressDialog.dismiss();
             }
         }
-
     }
 
-    private class DeleteClickListener implements DialogInterface.OnClickListener {
-        public void onClick(DialogInterface dialog, int which) {
-            CharSequence title = null;
-            CharSequence message = null;
-
-            if (isPickCall()) {
-                title = getString(R.string.delete_call_title);
-                message = getString(R.string.delete_call_message);
-            } else if (isPickSim()) {
-                title = getString(R.string.import_sim_contacts_title);
-                message = getString(R.string.import_sim_contacts_message);
-            } else {
-                title = getString(R.string.delete_contacts_title);
-                message = getString(R.string.delete_contacts_message);
-            }
-
-            Thread thread;
-            if (isPickSim()) {
-                thread = new ImportAllSimContactsThread();
-            } else {
-                thread = new DeleteContactsThread();
-            }
-
-            DialogInterface.OnKeyListener keyListener = new DialogInterface.OnKeyListener() {
-                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                    switch (keyCode) {
-                        case KeyEvent.KEYCODE_SEARCH:
-                        case KeyEvent.KEYCODE_CALL:
-                            return true;
-                        default:
-                            return false;
-                    }
-                }
-            };
-
-            mProgressDialog = new ProgressDialog(MultiPickContactActivity.this);
-            mProgressDialog.setTitle(title);
-            mProgressDialog.setMessage(message);
-            mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-            mProgressDialog.setButton(DialogInterface.BUTTON_NEGATIVE,
-                    getString(android.R.string.cancel), (OnClickListener) thread);
-            mProgressDialog.setOnCancelListener((OnCancelListener) thread);
-            mProgressDialog.setOnKeyListener(keyListener);
-            mProgressDialog.setProgress(0);
-            mProgressDialog.setMax(mChoiceSet.size());
-
-            // set dialog can not be canceled by touching outside area of
-            // dialog.
-            mProgressDialog.setCanceledOnTouchOutside(false);
-            mProgressDialog.show();
-
-            thread.start();
+    @Override
+    public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_SEARCH:
+            case KeyEvent.KEYCODE_CALL:
+                return true;
+            default:
+                return false;
         }
+    }
+
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        CharSequence title = null;
+        CharSequence message = null;
+
+        if (isPickCall()) {
+            title = getString(R.string.delete_call_title);
+            message = getString(R.string.delete_call_message);
+        } else if (isPickSim()) {
+            title = getString(R.string.import_sim_contacts_title);
+            message = getString(R.string.import_sim_contacts_message);
+        } else {
+            title = getString(R.string.delete_contacts_title);
+            message = getString(R.string.delete_contacts_message);
+        }
+
+        Thread thread = isPickSim()
+                ? new ImportAllSimContactsThread() : new DeleteContactsThread();
+
+        mProgressDialog = new ProgressDialog(MultiPickContactActivity.this);
+        mProgressDialog.setTitle(title);
+        mProgressDialog.setMessage(message);
+        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        mProgressDialog.setButton(DialogInterface.BUTTON_NEGATIVE,
+                getString(android.R.string.cancel), (DialogInterface.OnClickListener) thread);
+        mProgressDialog.setOnCancelListener((DialogInterface.OnCancelListener) thread);
+        mProgressDialog.setOnKeyListener(this);
+        mProgressDialog.setProgress(0);
+        mProgressDialog.setMax(mChoiceSet.size());
+
+        // set dialog can not be canceled by touching outside area of dialog
+        mProgressDialog.setCanceledOnTouchOutside(false);
+        mProgressDialog.show();
+
+        thread.start();
     }
 
     @Override
@@ -798,7 +753,7 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
             mProgressDialog.cancel();
         }
 
-        //unregister receiver.
+        // unregister receiver.
         if (mBroadcastReceiver != null) {
             unregisterReceiver(mBroadcastReceiver);
         }
@@ -827,8 +782,7 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
                 break;
             case MODE_DEFAULT_SIM:
             case MODE_SEARCH_SIM: {
-                mIntent = getIntent();
-                int subscription = mIntent.getIntExtra(MSimConstants.SUBSCRIPTION_KEY, 0);
+                int subscription = getIntent().getIntExtra(MSimConstants.SUBSCRIPTION_KEY, 0);
                 uri = querySimContacts(subscription);
                 break;
             }
@@ -855,24 +809,24 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
 
         if (filter != null &&
                 filter.filterType == ContactListFilter.FILTER_TYPE_ACCOUNT) {
-
             // Need consider account info limitation, construct the uri with
             // account info query parameter.
-            Builder builder = filterUri.buildUpon();
+            Uri.Builder builder = filterUri.buildUpon();
             filter.addAccountQueryParameterToUrl(builder);
             return builder.build();
         }
 
         if (!isShowSIM()) {
-            filterUri = filterUri.buildUpon().appendQueryParameter(RawContacts.ACCOUNT_TYPE,
-                     SimAccountType.ACCOUNT_TYPE)
-                    .appendQueryParameter(DefaultContactListAdapter.WITHOUT_SIM_FLAG,
-                     "true").build();
+            filterUri = filterUri.buildUpon()
+                    .appendQueryParameter(RawContacts.ACCOUNT_TYPE, SimAccountType.ACCOUNT_TYPE)
+                    .appendQueryParameter(DefaultContactListAdapter.WITHOUT_SIM_FLAG, "true")
+                    .build();
         }
         // No need to consider account info limitation, just return a uri
         // with "filter" path.
         return filterUri;
     }
+
     private Uri getFilterUri() {
         switch (mMode) {
             case MODE_SEARCH_CONTACT:
@@ -927,9 +881,8 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
             case MODE_SEARCH_PHONE:
                 if (isShowSIM()) {
                     return null;
-                } else {
-                    return PHONES_SELECTION;
                 }
+                return PHONES_SELECTION;
             case MODE_DEFAULT_CONTACT:
                 return getSelectionForAccount();
             case MODE_DEFAULT_SIM:
@@ -974,9 +927,8 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
             case MODE_SEARCH_PHONE:
                 if (isShowSIM()) {
                     return null;
-                } else {
-                    return PHONES_SELECTION_ARGS;
                 }
+                return PHONES_SELECTION_ARGS;
             case MODE_DEFAULT_SIM:
             case MODE_SEARCH_SIM:
                 return null;
@@ -988,7 +940,7 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
     private boolean isShowSIM() {
         // if airplane mode on, do not show SIM.
         return !getIntent().hasExtra(EXT_NOT_SHOW_SIM_FLAG)
-                && !MoreContactUtils.isAPMOnAndSIMPowerDown(mContext);
+                && !MoreContactUtils.isAPMOnAndSIMPowerDown(this);
     }
 
     public void startQuery() {
@@ -998,26 +950,26 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
         if (filter != null) {
             if (filter.filterType == ContactListFilter.FILTER_TYPE_ACCOUNT) {
                 // We should exclude the invisiable contacts.
-                uri = uri.buildUpon().appendQueryParameter(RawContacts.ACCOUNT_NAME,
-                         filter.accountName).appendQueryParameter(RawContacts.ACCOUNT_TYPE,
-                         filter.accountType)
+                uri = uri.buildUpon()
+                        .appendQueryParameter(RawContacts.ACCOUNT_NAME, filter.accountName)
+                        .appendQueryParameter(RawContacts.ACCOUNT_TYPE, filter.accountType)
                         .appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,
-                         ContactsContract.Directory.DEFAULT+"").build();
+                                String.valueOf(ContactsContract.Directory.DEFAULT))
+                        .build();
             } else if (filter.filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS) {
                 // Do not query sim contacts in airplane mode.
                 if (!isShowSIM()) {
-                    uri = uri.buildUpon().appendQueryParameter(RawContacts.ACCOUNT_TYPE,
-                              SimAccountType.ACCOUNT_TYPE)
-                             .appendQueryParameter(DefaultContactListAdapter.WITHOUT_SIM_FLAG,
-                              "true").build();
+                    uri = uri.buildUpon()
+                        .appendQueryParameter(RawContacts.ACCOUNT_TYPE,
+                                SimAccountType.ACCOUNT_TYPE)
+                        .appendQueryParameter(DefaultContactListAdapter.WITHOUT_SIM_FLAG, "true")
+                        .build();
                 }
             }
         }
         String[] projection = getProjectionForQuery();
-        String selection = getSelectionForQuery();
-        String[] selectionArgs = getSelectionArgsForQuery();
-        mQueryHandler.startQuery(QUERY_TOKEN, null, uri, projection, selection,
-                selectionArgs, getSortOrder(projection));
+        mQueryHandler.startQuery(QUERY_TOKEN, null, uri, projection,
+                getSelectionForQuery(), getSelectionArgsForQuery(), getSortOrder(projection));
     }
 
     public void doFilter(String s) {
@@ -1028,10 +980,8 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
 
         Uri uri = Uri.withAppendedPath(getFilterUri(), Uri.encode(s));
         String[] projection = getProjectionForQuery();
-        String selection = getSelectionForQuery();
-        String[] selectionArgs = getSelectionArgsForQuery();
-        mQueryHandler.startQuery(QUERY_TOKEN, null, uri, projection, selection,
-                selectionArgs, getSortOrder(projection));
+        mQueryHandler.startQuery(QUERY_TOKEN, null, uri, projection,
+                getSelectionForQuery(), getSelectionArgsForQuery(), getSortOrder(projection));
     }
 
     public void updateContent() {
@@ -1088,7 +1038,7 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
             if (isPickContact()) {
                 id = String.valueOf(cursor.getLong(SUMMARY_ID_COLUMN_INDEX));
                 value = new String[] {
-                        cursor.getString(SUMMARY_LOOKUP_KEY_COLUMN_INDEX), id
+                    cursor.getString(SUMMARY_LOOKUP_KEY_COLUMN_INDEX), id
                 };
             } else if (isPickPhone()) {
                 id = String.valueOf(cursor.getLong(PHONE_COLUMN_ID));
@@ -1098,14 +1048,14 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
                 String label = cursor.getString(PHONE_COLUMN_LABEL);
                 String contact_id = String.valueOf(cursor.getLong(PHONE_COLUMN_CONTACT_ID));
                 value = new String[] {
-                        name, number, type, label, contact_id
+                    name, number, type, label, contact_id
                 };
             } else if (isPickEmail()) {
                 id = String.valueOf(cursor.getLong(EMAIL_COLUMN_ID));
                 String name = cursor.getString(EMAIL_COLUMN_DISPLAY_NAME);
                 String email = cursor.getString(EMAIL_COLUMN_ADDRESS);
                 value = new String[] {
-                        name, email, id
+                    name, email, id
                 };
             } else if (isPickCall()) {
                 if (mSelectCallLog) {
@@ -1113,12 +1063,12 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
                     String number = cursor.getString(NUMBER_COLUMN_INDEX);
                     String name = cursor.getString(CALLER_NAME_COLUMN_INDEX);
                     value = new String[] {
-                            name, number
+                        name, number
                     };
                 } else {
                     id = String.valueOf(cursor.getLong(ID_COLUMN_INDEX));
                     value = new String[] {
-                            id
+                        id
                     };
                 }
             } else if (isPickSim()) {
@@ -1128,7 +1078,7 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
                 String email = cursor.getString(SIM_COLUMN_EMAILS);
                 String anrs = cursor.getString(SIM_COLUMN_ANRS);
                 value = new String[] {
-                        name, number, email, anrs
+                    name, number, email, anrs
                 };
             }
             if (isSelected) {
@@ -1150,32 +1100,21 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
     }
 
     private class QueryHandler extends AsyncQueryHandler {
-        protected WeakReference<MultiPickContactActivity> mActivity;
-
         public QueryHandler(Context context) {
             super(context.getContentResolver());
-            mActivity = new WeakReference<MultiPickContactActivity>(
-                    (MultiPickContactActivity) context);
         }
 
         @Override
         protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
-            // In the case of low memory, the WeakReference object may be
-            // recycled.
-            if (mActivity == null || mActivity.get() == null) {
-                mActivity = new WeakReference<MultiPickContactActivity>(
-                        MultiPickContactActivity.this);
-            }
-            final MultiPickContactActivity activity = mActivity.get();
-            activity.mAdapter.changeCursor(cursor);
+            mAdapter.changeCursor(cursor);
             if (cursor == null || cursor.getCount() == 0) {
                 if (isPickCall()) {
                     log("no call found");
-                } else if (!activity.mAdapter.mIsContentChanged) {
-                    Toast.makeText(mContext, R.string.listFoundAllContactsZero, Toast.LENGTH_SHORT)
-                            .show();
+                } else if (!mAdapter.mIsContentChanged) {
+                    Toast.makeText(MultiPickContactActivity.this,
+                            R.string.listFoundAllContactsZero, Toast.LENGTH_SHORT).show();
                 } else {
-                    activity.mAdapter.mIsContentChanged = false;
+                    mAdapter.mIsContentChanged = false;
                 }
             }
         }
@@ -1204,62 +1143,63 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
             super(context, null, false);
 
             mContext = context;
-            mInflater = (LayoutInflater) context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             mContactPhotoManager = ContactPhotoManager.getInstance(mContext);
         }
 
         @Override
         public void bindView(View view, Context context, Cursor cursor) {
             ContactItemCache cache = (ContactItemCache) view.getTag();
+            ContactListItemView cliv = (ContactListItemView) view.findViewById(R.id.contact);
+
             if (isPickContact()) {
                 cache.id = cursor.getLong(SUMMARY_ID_COLUMN_INDEX);
                 cache.lookupKey = cursor.getString(SUMMARY_LOOKUP_KEY_COLUMN_INDEX);
                 cache.name = cursor.getString(SUMMARY_DISPLAY_NAME_PRIMARY_COLUMN_INDEX);
-                ((TextView) view.findViewById(R.id.pick_contact_name))
-                        .setText(cache.name == null ? getString(R.string.unknown) : cache.name);
-                view.findViewById(R.id.pick_contact_number).setVisibility(View.GONE);
+
+                cliv.setDisplayName(cache.name);
+                cliv.setPhoneNumber(null);
 
                 long photoId = 0;
                 if (!cursor.isNull(SUMMARY_PHOTO_ID_COLUMN_INDEX)) {
                     photoId = cursor.getLong(SUMMARY_PHOTO_ID_COLUMN_INDEX);
                 }
-                Account account = null;
-                if (!cursor.isNull(SUMMARY_ACCOUNT_TYPE) && !cursor.isNull(SUMMARY_ACCOUNT_NAME)) {
-                    final String accountType = cursor.getString(SUMMARY_ACCOUNT_TYPE);
-                    final String accountName = cursor.getString(SUMMARY_ACCOUNT_NAME);
-                    account = new Account(accountName, accountType);
-                }
-                ImageView photo = ((ImageView) view.findViewById(R.id.pick_contact_photo));
-                photo.setVisibility(View.VISIBLE);
-                mContactPhotoManager.loadThumbnail(photo, photoId, false, null);
+                mContactPhotoManager.loadThumbnail(cliv.getPhotoView(), photoId, false, null);
             } else if (isPickPhone()) {
                 cache.id = cursor.getLong(PHONE_COLUMN_ID);
                 cache.name = cursor.getString(PHONE_COLUMN_DISPLAY_NAME);
                 cache.number = cursor.getString(PHONE_COLUMN_NUMBER);
                 cache.label = cursor.getString(PHONE_COLUMN_LABEL);
                 cache.type = String.valueOf(cursor.getInt(PHONE_COLUMN_TYPE));
-                ((TextView) view.findViewById(R.id.pick_contact_name)).setText(cache.name);
-                ((TextView) view.findViewById(R.id.pick_contact_number)).setText(cache.number);
+
+                cliv.setDisplayName(cache.name);
+                cliv.setPhoneNumber(cache.number);
+                cliv.removePhotoView();
             } else if (isPickSim()) {
                 cache.id = cursor.getLong(SIM_COLUMN_ID);
                 cache.name = cursor.getString(SIM_COLUMN_DISPLAY_NAME);
                 cache.number = cursor.getString(SIM_COLUMN_NUMBER);
                 cache.email = cursor.getString(SIM_COLUMN_EMAILS);
                 cache.anrs = cursor.getString(SIM_COLUMN_ANRS);
-                ((TextView) view.findViewById(R.id.pick_contact_name)).setText(cache.name);
+
+                cliv.setDisplayName(cache.name);
+                cliv.removePhotoView();
                 if (!TextUtils.isEmpty(cache.number)) {
-                    ((TextView) view.findViewById(R.id.pick_contact_number)).setText(cache.number);
+                    cliv.setPhoneNumber(cache.number);
                 } else if (!TextUtils.isEmpty(cache.email)) {
                     String[] emailArray = (cache.email).split(",");
-                    ((TextView) view.findViewById(R.id.pick_contact_number)).setText(emailArray[0]);
+                    cliv.setPhoneNumber(emailArray[0]);
+                } else {
+                    cliv.setPhoneNumber(null);
                 }
             } else if (isPickEmail()) {
                 cache.id = cursor.getLong(EMAIL_COLUMN_ID);
                 cache.name = cursor.getString(EMAIL_COLUMN_DISPLAY_NAME);
                 cache.email = cursor.getString(EMAIL_COLUMN_ADDRESS);
-                ((TextView) view.findViewById(R.id.pick_contact_name)).setText(cache.name);
-                ((TextView) view.findViewById(R.id.pick_contact_number)).setText(cache.email);
+
+                cliv.setDisplayName(cache.name);
+                cliv.setPhoneNumber(cache.email);
+                cliv.removePhotoView();
             } else if (isPickCall()) {
                 cache.id = cursor.getLong(ID_COLUMN_INDEX);
                 cache.name = cursor.getString(CALLER_NAME_COLUMN_INDEX);
@@ -1282,7 +1222,7 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
                 TextView callerNameText = (TextView) view.findViewById(R.id.line1);
 
                 // only for monkey test, callType can not be null in normal behaviour
-                if(callType == null){
+                if (callType == null) {
                     return;
                 }
 
@@ -1292,12 +1232,9 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
                     case Calls.INCOMING_TYPE:
                         callType.setImageDrawable(mDrawableIncoming);
                         break;
-
                     case Calls.OUTGOING_TYPE:
                         callType.setImageDrawable(mDrawableOutgoing);
                         break;
-
-
                     case Calls.MISSED_TYPE:
                         callType.setImageDrawable(mDrawableMissed);
                         break;
@@ -1348,40 +1285,23 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
             }
 
             CheckBox checkBox = (CheckBox) view.findViewById(R.id.pick_contact_check);
-            if (mChoiceSet.containsKey(String.valueOf(cache.id))) {
-                checkBox.setChecked(true);
-            } else {
-                checkBox.setChecked(false);
-            }
+            checkBox.setChecked(mChoiceSet.containsKey(String.valueOf(cache.id)));
         }
 
         @Override
         public View newView(Context context, Cursor cursor, ViewGroup parent) {
-            View v = null;
-            if (isPickCall()) {
-                v = mInflater.inflate(R.layout.pick_calls_item, parent, false);
-            } else {
-                v = mInflater
-                        .inflate(R.layout.pick_contact_item, parent, false);
+            int layoutResId = isPickCall() ? R.layout.pick_calls_item : R.layout.pick_contact_item;
+            View v = mInflater.inflate(layoutResId, parent, false);
+            ContactListItemView cliv = (ContactListItemView) v.findViewById(R.id.contact);
+            if (cliv != null) {
+                ContactListItemView.PhotoPosition pp = cliv.getPhotoPosition();
+                cliv.setPhotoPosition(pp == ContactListItemView.PhotoPosition.LEFT
+                        ? ContactListItemView.PhotoPosition.RIGHT
+                        : ContactListItemView.PhotoPosition.LEFT);
+                cliv.setUnknownNameText(getString(R.string.unknown));
             }
             ContactItemCache cache = new ContactItemCache();
             v.setTag(cache);
-            return v;
-        }
-
-        public View getView(int position, View convertView, ViewGroup parent) {
-            View v;
-
-            if (!mCursor.moveToPosition(position)) {
-                throw new IllegalStateException(
-                        "couldn't move cursor to position " + position);
-            }
-            if (convertView != null && convertView.getTag() != null) {
-                v = convertView;
-            } else {
-                v = newView(mContext, mCursor, parent);
-            }
-            bindView(v, mContext, mCursor);
             return v;
         }
 
@@ -1410,14 +1330,11 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
             }
             String[] sections = null;
             int[] counts = null;
-            if (cursor != null
-                    && cursor.getExtras() != null
-                    && cursor.getExtras()
-                            .containsKey(ContactCounts.EXTRA_ADDRESS_BOOK_INDEX_TITLES)) {
-                sections = cursor.getExtras().getStringArray(
-                        ContactCounts.EXTRA_ADDRESS_BOOK_INDEX_TITLES);
-                counts = cursor.getExtras().getIntArray(
-                        ContactCounts.EXTRA_ADDRESS_BOOK_INDEX_COUNTS);
+            Bundle extras = cursor != null ? cursor.getExtras() : null;
+            if (extras != null &&
+                    extras.containsKey(ContactCounts.EXTRA_ADDRESS_BOOK_INDEX_TITLES)) {
+                sections = extras.getStringArray(ContactCounts.EXTRA_ADDRESS_BOOK_INDEX_TITLES);
+                counts = extras.getIntArray(ContactCounts.EXTRA_ADDRESS_BOOK_INDEX_COUNTS);
             } else {
                 sections = new String[0];
                 counts = new int[0];
@@ -1447,36 +1364,32 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
 
         @Override
         public int getSectionForPosition(int position) {
-            return 0;
+            if (mIndexer != null) {
+                return mIndexer.getSectionForPosition(position);
+            }
+            return -1;
         }
 
         public int getSortIndex() {
-            int index = -1;
             switch (mMode) {
                 case MODE_DEFAULT_CONTACT:
                 case MODE_SEARCH_CONTACT:
-                    index = SUMMARY_DISPLAY_NAME_PRIMARY_COLUMN_INDEX;
-                    break;
+                    return SUMMARY_DISPLAY_NAME_PRIMARY_COLUMN_INDEX;
                 case MODE_DEFAULT_PHONE:
                 case MODE_SEARCH_PHONE:
-                    index = PHONE_COLUMN_DISPLAY_NAME;
-                    break;
+                    return PHONE_COLUMN_DISPLAY_NAME;
                 case MODE_DEFAULT_EMAIL:
                 case MODE_SEARCH_EMAIL:
-                    index = EMAIL_COLUMN_DISPLAY_NAME;
-                    break;
+                    return EMAIL_COLUMN_DISPLAY_NAME;
                 case MODE_DEFAULT_CALL:
                 case MODE_SEARCH_CALL:
-                    index = CALLER_NAME_COLUMN_INDEX;
-                    break;
+                    return CALLER_NAME_COLUMN_INDEX;
                 case MODE_DEFAULT_SIM:
                 case MODE_SEARCH_SIM:
-                    index = SIM_COLUMN_DISPLAY_NAME;
-                    break;
+                    return SIM_COLUMN_DISPLAY_NAME;
                 default:
                     throw new IllegalArgumentException("Incorrect mode for multi pick");
             }
-            return index;
         }
     }
 
@@ -1492,14 +1405,13 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
 
     private void hideSoftKeyboard() {
         // Hide soft keyboard, if visible
-        InputMethodManager inputMethodManager = (InputMethodManager)
-                getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager inputMethodManager =
+                (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(mSearchView.getWindowToken(), 0);
     }
 
     protected static void log(String msg) {
-        if (DEBUG)
-            Log.d(TAG, msg);
+        if (DEBUG) Log.d(TAG, msg);
     }
 
     private boolean isMultiSimEnabled() {
@@ -1507,33 +1419,22 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
     }
 
     private Uri querySimContacts(int subscription) {
-        Intent intent = new Intent();
         if (subscription != SUB1 && subscription != SUB2) {
             return null;
         }
 
-        if (isMultiSimEnabled()) {
-            if (subscription == SUB1) {
-                intent.setData(Uri.parse("content://iccmsim/adn"));
-            } else if (subscription == SUB2) {
-                intent.setData(Uri.parse("content://iccmsim/adn_sub2"));
-            }
+        if (isMultiSimEnabled() && subscription == SUB2) {
+            return Uri.parse("content://iccmsim/adn_sub2");
         }
-        else {
-            intent.setData(Uri.parse("content://icc/adn"));
-        }
-
-        Uri uri = intent.getData();
-        return uri;
+        return Uri.parse("content://iccmsim/adn");
     }
 
     protected Account[] getSimAccounts() {
-        return accountManager
-                .getAccountsByType(SimContactsConstants.ACCOUNT_TYPE_SIM);
+        return mAccountManager.getAccountsByType(SimContactsConstants.ACCOUNT_TYPE_SIM);
     }
 
     private class ImportAllSimContactsThread extends Thread
-            implements OnCancelListener, DialogInterface.OnClickListener {
+            implements DialogInterface.OnCancelListener, DialogInterface.OnClickListener {
         private int mSubscription = 0;
         boolean mCanceled = false;
         // The total count how many to import.
@@ -1553,19 +1454,18 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
         @Override
         public void run() {
             final ContentValues emptyContentValues = new ContentValues();
-            final ContentResolver resolver = mContext.getContentResolver();
+            final ContentResolver resolver = getContentResolver();
 
             String type = getIntent().getStringExtra(SimContactsConstants.ACCOUNT_TYPE);
             String name = getIntent().getStringExtra(SimContactsConstants.ACCOUNT_NAME);
             mAccount = new Account(name != null ? name : SimContactsConstants.PHONE_NAME,
-                    type != null ? type
-                            : SimContactsConstants.ACCOUNT_TYPE_PHONE);
+                    type != null ? type : SimContactsConstants.ACCOUNT_TYPE_PHONE);
             log("import sim contact to account: " + mAccount);
             Set<String> keySet = mChoiceSet.keySet();
             mTotalCount = keySet.size();
             Iterator<String> it = keySet.iterator();
-            while (!mCanceled && it.hasNext()) {
 
+            while (!mCanceled && it.hasNext()) {
                 String key = it.next();
                 String[] values = mChoiceSet.getStringArray(key);
                 actuallyImportOneSimContact(values, resolver, mAccount);
@@ -1575,15 +1475,17 @@ public class MultiPickContactActivity extends ListActivity implements OnTouchLis
             finish();
         }
 
+        @Override
         public void onCancel(DialogInterface dialog) {
+            final Context context = MultiPickContactActivity.this;
             mCanceled = true;
             // Give a toast show to tell user import termination.
             if (mActualCount < mTotalCount) {
                 String text = getResources().getQuantityString(R.plurals.import_stop,
                         mActualCount, mActualCount);
-                Toast.makeText(mContext, text, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(mContext, R.string.import_finish, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.import_finish, Toast.LENGTH_SHORT).show();
             }
         }
 
