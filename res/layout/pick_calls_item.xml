@@ -28,117 +28,93 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  -->
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:minHeight="?android:attr/listPreferredItemHeight"
-    android:paddingTop="3dip"
-    android:paddingBottom="3dip"
-    >
-    <LinearLayout
-        android:layout_width="60dip"
-        android:layout_weight="0"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
-
-        <ImageView android:id="@+id/call_type_icon"
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="4dip"/>
-
-       <TextView android:id="@+id/label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:singleLine="true"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textStyle="bold"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_weight="1"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <TextView android:id="@+id/number"
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-            />
-
-            <TextView android:id="@+id/line1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:singleLine="true"
-            />
-
-            <TextView android:id="@+id/subscription"
-                android:layout_width="wrap_content"
-                android:layout_weight="0"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:singleLine="true"
-            />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <TextView android:id="@+id/duration"
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:singleLine="true"
-            />
-
-            <TextView android:id="@+id/date"
-                android:layout_weight="0"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:singleLine="true"
-            />
-
-        </LinearLayout>
-    </LinearLayout>
-
-    <View android:id="@+id/divider"
-        android:layout_weight="0"
-        android:layout_width="1px"
-        android:layout_height="match_parent"
-        android:layout_marginTop="5dip"
-        android:layout_marginBottom="5dip"
-        android:layout_marginStart="11dip"
-    />
+    android:descendantFocusability="blocksDescendants">
 
     <CheckBox
-        android:layout_weight="0"
         android:id="@+id/pick_contact_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dip"
-        android:layout_centerVertical="true"
-        android:focusable="false"
-        android:clickable="false">
-    </CheckBox>
+        android:layout_marginStart="8dip"
+        android:layout_marginEnd="8dip"
+        android:layout_gravity="center_vertical"
+        android:clickable="false" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="16sp"
+            android:singleLine="true" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/subscription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dip"
+                android:textSize="12sp"
+                android:singleLine="true"
+                android:ellipsize="marquee" />
+
+            <TextView
+                android:id="@+id/label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:singleLine="true"
+                android:ellipsize="marquee" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/call_type_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dip"
+                android:layout_gravity="center_vertical" />
+
+
+            <TextView
+                android:id="@+id/call_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textSize="12sp"
+                android:singleLine="true" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView android:id="@+id/duration"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_gravity="center_vertical"
+         android:layout_marginStart="4dip"
+         android:layout_marginEnd="8dip"
+         android:textAppearance="?android:attr/textAppearanceSmall"
+         android:singleLine="true" />
+
 </LinearLayout>

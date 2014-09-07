@@ -671,23 +671,32 @@
     <!-- Button label to prompt the user to add another account (when there are already existing accounts on the device) [CHAR LIMIT=30] -->
     <string name="add_new_account">Add new account</string>
     <string name="select_all">All</string>
-    <string name="btn_ok">Ok</string>
-    <string name="btn_cancel">Cancel</string>
     <string name="menu_sendViaSMS">Send contact via SMS</string>
-    <!-- Gray hint displayed in the search field in Contacts when empty -->
-    <string name="search_bar_hint">Search contacts</string>
     <!-- Confirmation dialog title after users selects to delete a contact. [CHAR LIMIT=25]-->
     <string name="deleteConfirmation_title">Delete contact?</string>
     <string name="import_sim_contacts_title">Import sim contacts</string>
-    <string name="import_sim_contacts_message">Importing sim contacts ...</string>
-    <string name="ContactMultiImportConfirmation">These contacts will be imported.</string>
+    <string name="import_sim_contacts_message">Importing sim contacts\u2026</string>
+    <plurals name="ContactMultiImportConfirmation">
+        <item quantity="one">%d contact will be imported.</item>
+        <item quantity="other">%d contacts will be imported.</item>
+    </plurals>
     <string name="import_finish">"Import finished"</string>
-    <string name="import_stop">"Import stopped"</string>
+    <plurals name="import_progress">
+        <item quantity="one">%d contact imported</item>
+        <item quantity="other">%d contacts imported</item>
+    </plurals>
+    <plurals name="contacts_selected">
+        <item quantity="one">%d contact selected</item>
+        <item quantity="other">%d contacts selected</item>
+    </plurals>
     <string name="too_many_contacts_add_to_group">Too many contacts, that should be less than <xliff:g id="count">%d</xliff:g></string>
     <!-- Multi Delete Contacts related strings -->
-    <string name="ContactMultiDeleteConfirmation">These contacts will be deleted.</string>
+    <plurals name="ContactMultiDeleteConfirmation">
+        <item quantity="one">%d contact will be deleted.</item>
+        <item quantity="other">%d contacts will be deleted.</item>
+    </plurals>
     <string name="delete_contacts_title">Delete Contacts</string>
-    <string name="delete_contacts_message">Deleting Contacts ...</string>
+    <string name="delete_contacts_message">Deleting Contacts\u2026</string>
     <string name="delete_termination">"Delete is termination"</string>
     <!-- Menu item shown only when the special debug mode is enabled, which is used to send all contacts database files via email.  [CHAR LIMI=NONE] -->
     <string name="menu_export_database">Export database files</string>

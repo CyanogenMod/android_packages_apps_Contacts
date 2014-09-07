@@ -437,10 +437,10 @@
             android:theme="@style/BackgroundOnlyTheme" />
 
         <activity
-            android:name=".editor.MultiPickContactActivity"
+            android:name=".activities.MultiPickContactActivity"
             android:windowSoftInputMode="stateHidden|adjustResize"
             android:screenOrientation="nosensor"
-            android:theme="@android:style/Theme.Holo.Light"
+            android:theme="@style/ContactPickerTheme"
             android:configChanges="orientation|keyboardHidden|layoutDirection">
             <intent-filter>
                 <action android:name="com.android.contacts.action.MULTI_PICK" />

@@ -225,8 +225,6 @@
     <string name="add_account" msgid="8201790677994503186">"新增帳戶"</string>
     <string name="add_new_account" msgid="5748627740680940264">"新增帳戶"</string>
     <string name="select_all">"全選"</string>
-    <string name="btn_ok">"確定"</string>
-    <string name="btn_cancel">"取消"</string>
     <string name="menu_sendViaSMS">通過簡訊發送聯絡人</string>
     <string name="deleteConfirmation_title">"要刪除聯絡人嗎？"</string>
     <string name="importConfirmation_title">"要導入聯絡人嗎？"</string>
@@ -239,7 +237,6 @@
     <string name="import_sim_contacts_message">"正在導入..."</string>
     <!-- Import from sim card -->
     <string name="import_finish">導入完成</string>
-    <string name="import_stop">導入停止</string>
     <string name="menu_export_database" msgid="2659719297530170820">"匯出資料庫檔案"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"新增聯絡人"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"顯示更多"</string>

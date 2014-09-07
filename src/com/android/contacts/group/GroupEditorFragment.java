@@ -63,18 +63,18 @@ import com.android.contacts.GroupMemberLoader.GroupEditorQuery;
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
 import com.android.contacts.activities.GroupEditorActivity;
+import com.android.contacts.activities.MultiPickContactActivity;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.model.account.PhoneAccountType;
 import com.android.contacts.common.editor.SelectAccountDialogFragment;
-import com.android.contacts.group.SuggestedMemberListAdapter.SuggestedMember;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.common.util.ViewUtil;
-import com.android.contacts.editor.MultiPickContactActivity;
 import com.android.contacts.common.SimContactsConstants;
+import com.android.contacts.group.SuggestedMemberListAdapter.SuggestedMember;
 
 import com.google.common.base.Objects;
 
@@ -478,9 +478,9 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
                     intent.putExtra(SimContactsConstants.IS_CONTACT, true);
                     intent.putExtra(SimContactsConstants.ACCOUNT_NAME, mAccountName);
                     intent.putExtra(SimContactsConstants.ACCOUNT_TYPE, mAccountType);
-                    intent.putExtra(MultiPickContactActivity.ADD_MOVE_GROUP_MEMBER_KEY,
-                            MultiPickContactActivity.ACTION_ADD_GROUP_MEMBER);
-                    intent.putExtra(MultiPickContactActivity.KEY_GROUP_ID, mGroupId);
+                    intent.putExtra(MultiPickContactActivity.EXTRA_GROUP_ACTION,
+                            MultiPickContactActivity.GROUP_ACTION_ADD_MEMBER);
+                    intent.putExtra(MultiPickContactActivity.EXTRA_GROUP_ID, mGroupId);
                     startActivityForResult(intent, REQUEST_CODE_PICK_GROUP_MEM);
                 }
             });

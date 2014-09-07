@@ -241,8 +241,6 @@
     <string name="add_account" msgid="8201790677994503186">"添加帐户"</string>
     <string name="add_new_account" msgid="5748627740680940264">"添加新帐户"</string>
     <string name="select_all">"全选"</string>
-    <string name="btn_ok">"确定"</string>
-    <string name="btn_cancel">"取消"</string>
     <string name="search_bar_hint">"搜索联系人"</string>
     <string name="menu_sendViaSMS">通过短信发送联系人</string>
     <string name="deleteConfirmation_title">"要删除联系人吗？"</string>
@@ -255,7 +253,6 @@
     <string name="import_sim_contacts_message">"正在导入..."</string>
     <!-- Import from sim card -->
     <string name="import_finish">"导入完成"</string>
-    <string name="import_stop">"导入停止"</string>
     <string name="too_many_contacts_add_to_group">联系人过多，应该少于<xliff:g id="count">%d</xliff:g>个</string>
     <!-- add for MemoryStatusActivity -->
     <string name="menu_memory_status">"存储器状态"</string>

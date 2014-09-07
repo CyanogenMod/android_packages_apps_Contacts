@@ -27,49 +27,18 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  -->
-<RelativeLayout
-         xmlns:android="http://schemas.android.com/apk/res/android"
-         android:layout_width="fill_parent"
-         android:layout_height="wrap_content"
-         android:minHeight="?android:attr/listPreferredItemHeight"
-         android:paddingTop="3dip"
-         android:paddingBottom="3dip"
-         >
-         <ImageView android:layout_width="@dimen/contact_browser_list_item_photo_size"
-               android:layout_height="@dimen/contact_browser_list_item_photo_size"
-               android:layout_marginStart="10dip"
-               android:layout_marginEnd="5dip"
-               android:layout_marginTop="5dip"
-               android:visibility="gone"
-               android:id="@+id/pick_contact_photo"/>
-         <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_toEndOf="@id/pick_contact_photo"
-               android:layout_marginStart="10dip"
-               android:layout_marginEnd="50dip"
-               android:layout_marginTop="5dip"
-               android:textAppearance="?android:attr/textAppearanceLarge"
-               android:id="@+id/pick_contact_name">
-         </TextView>
-         <TextView
-               android:layout_height="wrap_content"
-               android:layout_width="wrap_content"
-               android:layout_below="@id/pick_contact_name"
-               android:layout_marginStart="10dip"
-               android:layout_marginBottom="5dip"
-               android:textAppearance="?android:attr/textAppearanceSmall"
-               android:id="@+id/pick_contact_number"
-               android:singleLine="true">
-         </TextView>
-         <CheckBox
-             android:id="@+id/pick_contact_check"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_marginEnd="10dip"
-             android:layout_centerVertical="true"
-             android:layout_alignParentEnd="true"
-             android:focusable="false"
-             android:clickable="false">
-         </CheckBox>
-</RelativeLayout>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:descendantFocusability="blocksDescendants">
+
+    <com.android.contacts.common.list.ContactListItemView
+        android:id="@+id/contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dip"
+        android:layout_gravity="center_vertical" />
+
+</FrameLayout>
