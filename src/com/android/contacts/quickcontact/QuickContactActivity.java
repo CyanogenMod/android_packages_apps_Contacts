@@ -216,6 +216,9 @@ public class QuickContactActivity extends ContactsActivity {
     private static final String CALL_ORIGIN_QUICK_CONTACTS_ACTIVITY =
             "com.android.contacts.quickcontact.QuickContactActivity";
 
+    // URI for contact lookup
+    public static final String CONTACT_URI_EXTRA = "contact_uri_extra";
+
     /**
      * The URI used to load the the Contact. Once the contact is loaded, use Contact#getLookupUri()
      * instead of referencing this URI.
@@ -822,15 +825,28 @@ public class QuickContactActivity extends ContactsActivity {
         }
         mExtraMode = getIntent().getIntExtra(QuickContact.EXTRA_MODE,
                 QuickContact.MODE_LARGE);
+
         final Uri oldLookupUri = mLookupUri;
 
-        if (lookupUri == null) {
+        mLookupUri = lookupUri;
+        mExcludeMimes = intent.getStringArrayExtra(QuickContact.EXTRA_EXCLUDE_MIMES);
+
+        Contact contact = null;
+        if (mLookupUri == null) {
+            // See if a URI has been attached as an extra
+            mLookupUri = intent.getParcelableExtra(CONTACT_URI_EXTRA);
+            contact = ContactLoader.parseEncodedContactEntity(mLookupUri,
+                    ContactLoader.EncodedContactEntitySchemaVersion.ENHANCED_CALLER_META_DATA);
+        }
+
+        if (mLookupUri == null) {
             finish();
             return;
         }
-        mLookupUri = lookupUri;
-        mExcludeMimes = intent.getStringArrayExtra(QuickContact.EXTRA_EXCLUDE_MIMES);
-        if (oldLookupUri == null) {
+
+        if (contact != null) {
+            bindContactData(contact);
+        } else if (oldLookupUri == null) {
             mContactLoader = (ContactLoader) getLoaderManager().initLoader(
                     LOADER_CONTACT_ID, null, mLoaderContactCallbacks);
         } else if (oldLookupUri != mLookupUri) {
