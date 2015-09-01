@@ -318,4 +318,7 @@
     <style name="ContactsAlertDialogTheme" parent="@android:style/Theme.Material.Light.Dialog">
         <item name="android:colorAccent">@color/primary_color</item>
     </style>
+    
+    <!--Date picker dialog theme-->
+    <style name="DatePickerDialogTheme" parent="@android:style/Theme.DeviceDefault.Light"/>
 </resources>

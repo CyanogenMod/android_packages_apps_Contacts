@@ -105,7 +105,7 @@ public class DatePickerDialog extends AlertDialog implements OnClickListener,
             int monthOfYear,
             int dayOfMonth,
             boolean yearOptional) {
-        this(context, THEME_DEVICE_DEFAULT_LIGHT, callBack, year, monthOfYear, dayOfMonth,
+        this(context, R.style.DatePickerDialogTheme, callBack, year, monthOfYear, dayOfMonth,
                 yearOptional);
     }
 
