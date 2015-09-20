@@ -16,33 +16,33 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="people" msgid="1048457247435785074">"人物"</string>
-    <string name="contactsList" msgid="8661624236494819731">"通訊錄"</string>
+    <string name="people" msgid="1048457247435785074">"聯絡人"</string>
+    <string name="contactsList" msgid="8661624236494819731">"聯絡人"</string>
     <string name="shortcutContact" msgid="749243779392912958">"聯絡人"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"直接撥號"</string>
-    <string name="shortcutMessageContact" msgid="2460337253595976198">"私人訊息"</string>
+    <string name="shortcutMessageContact" msgid="2460337253595976198">"直接傳訊"</string>
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"選擇聯絡人捷徑"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"選擇撥打號碼"</string>
+    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"選擇去電號碼"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"選擇傳訊號碼"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"選擇聯絡人"</string>
     <string name="starredList" msgid="4817256136413959463">"已加星號"</string>
-    <string name="frequentList" msgid="7154768136473953056">"常用聯絡人"</string>
+    <string name="frequentList" msgid="7154768136473953056">"經常聯絡"</string>
     <string name="strequentList" msgid="5640192862059373511">"我的最愛"</string>
     <string name="viewContactTitle" msgid="7989394521836644384">"聯絡人詳細資料"</string>
-    <string name="viewContactDesription" msgid="214186610887547860">"查看聯絡人"</string>
+    <string name="viewContactDesription" msgid="214186610887547860">"檢視聯絡人"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"編輯聯絡人"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"建立聯絡人"</string>
     <string name="editGroupDescription" msgid="6321161304201540561">"編輯群組"</string>
     <string name="insertGroupDescription" msgid="5658512271662210139">"建立群組"</string>
-    <string name="contactDetailAbout" msgid="5430408883907061400">"關於"</string>
+    <string name="contactDetailAbout" msgid="5430408883907061400">"相關資訊"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"更新"</string>
     <string name="searchHint" msgid="8482945356247760701">"搜尋聯絡人"</string>
-    <string name="menu_viewContact" msgid="2795575601596468581">"查看聯絡人"</string>
-    <string name="menu_addStar" msgid="2908478235715404876">"新增至我的最愛"</string>
-    <string name="menu_removeStar" msgid="5844227078364227030">"從「我的最愛」中移除"</string>
+    <string name="menu_viewContact" msgid="2795575601596468581">"檢視聯絡人"</string>
+    <string name="menu_addStar" msgid="2908478235715404876">"加到我的收藏"</string>
+    <string name="menu_removeStar" msgid="5844227078364227030">"從我的最愛中移除"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"編輯"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"刪除"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"新增到主畫面上"</string>
+    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"新增到主螢幕上"</string>
     <string name="menu_call" msgid="3992595586042260618">"致電聯絡人"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"傳送簡訊至聯絡人"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"分割"</string>
@@ -50,24 +50,24 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"刪除"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"新增聯絡人"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"新增群組"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"要分拆聯絡人記錄嗎？"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"這個聯絡人記錄即將分拆為多個。"</string>
-    <string name="menu_joinAggregate" msgid="5027981918265667970">"加入"</string>
+    <string name="splitConfirmation_title" msgid="633640935430370530">"確定要分割聯絡人？"</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"這位聯絡人即將分割成多份聯絡人資料。"</string>
+    <string name="menu_joinAggregate" msgid="5027981918265667970">"合併"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"合併聯絡人"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"選擇要與<xliff:g id="NAME">%s</xliff:g>合併的聯絡人："</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"顯示所有聯絡人"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"建議的聯絡人"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"所有聯絡人"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"已合併聯絡人"</string>
-    <string name="menu_set_ring_tone" msgid="8728345772068064946">"設定鈴聲"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"所有來電轉到留言信箱"</string>
-    <string name="readOnlyContactWarning" msgid="7808825687289848259">"您無法刪除唯讀帳戶的聯絡人，但可在聯絡人名單中隱藏這些聯絡人。"</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"這個聯絡人包含來自多個帳戶的資訊。您的聯絡人清單不會顯示唯讀帳戶的資訊 (這些資訊並不會被刪除)。"</string>
-    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"刪除這個聯絡人將刪除多個帳戶的資訊。"</string>
+    <string name="menu_set_ring_tone" msgid="8728345772068064946">"設定電話鈴聲"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"將所有來電轉到語音信箱"</string>
+    <string name="readOnlyContactWarning" msgid="7808825687289848259">"您無法刪除唯讀帳戶的聯絡人，但可在聯絡人清單中隱藏這些聯絡人。"</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"此聯絡人包含來自多個帳戶的資訊。您的聯絡人清單不會顯示唯讀帳戶的資訊 (這些資訊並不會被刪除)。"</string>
+    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"刪除此聯絡人將會刪除多個帳戶的資訊。"</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"刪除此聯絡人？"</string>
-    <string name="menu_discard" msgid="6456087569315685632">"取消"</string>
+    <string name="menu_discard" msgid="6456087569315685632">"捨棄"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"聯絡人不存在。"</string>
-    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"聯絡人小工具已新增到主畫面上。"</string>
+    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"聯絡人小工具已新增到主螢幕上。"</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"建立新聯絡人"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"建立新聯絡人"</string>
   <string-array name="otherLabels">
@@ -78,11 +78,11 @@
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"手機中沒有相片可供選用。"</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"聯絡人相片"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"自訂標籤名稱"</string>
-    <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"直接將來電轉到留言信箱"</string>
+    <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"直接將來電轉到語音信箱"</string>
     <string name="removePhoto" msgid="4898105274130284565">"移除相片"</string>
     <string name="noContacts" msgid="8579310973261953559">"沒有聯絡人。"</string>
     <string name="noGroups" msgid="8614664663561385253">"沒有群組。"</string>
-    <string name="noAccounts" msgid="7768267764545265909">"如要建立群組，您需要有一個帳戶。"</string>
+    <string name="noAccounts" msgid="7768267764545265909">"必須要有帳戶才能建立群組。"</string>
     <string name="emptyGroup" msgid="7502116218697177370">"這個群組中沒有成員。"</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"如要新增成員，請編輯群組。"</string>
     <string name="savingContact" msgid="4075751076741924939">"正在儲存聯絡人…"</string>
