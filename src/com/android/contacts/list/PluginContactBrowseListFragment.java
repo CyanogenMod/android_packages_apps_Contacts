@@ -58,7 +58,8 @@ import com.android.contacts.common.list.ContactListItemView;
 import com.android.contacts.common.list.DefaultContactListAdapter;
 import com.android.contacts.common.list.ProfileAndContactsLoader;
 import com.android.contacts.incall.InCallPluginUtils;
-import com.android.phone.common.incall.CallMethodUtils;
+import com.android.phone.common.incall.utils.CallMethodUtils;
+
 import java.util.List;
 
 public class PluginContactBrowseListFragment extends ContactEntryListFragment<ContactListAdapter>

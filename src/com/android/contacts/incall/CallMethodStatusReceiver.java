@@ -28,6 +28,6 @@ public class CallMethodStatusReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (DEBUG) Log.d(TAG, "plugin status changed");
-        InCallPluginHelper.refresh();
+        InCallPluginHelper.INCALL.get(context).refresh();
     }
 }
