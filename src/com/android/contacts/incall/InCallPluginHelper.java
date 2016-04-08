@@ -18,113 +18,82 @@ package com.android.contacts.incall;
 
 import android.content.ComponentName;
 import android.content.Context;
-import android.os.Handler;
-import android.util.Log;
 
-import com.android.phone.common.ambient.AmbientConnection;
+import com.android.phone.common.ambient.TypedPendingResult;
 import com.android.phone.common.incall.CallMethodHelper;
 import com.android.phone.common.incall.CallMethodInfo;
-import com.cyanogen.ambient.common.api.PendingResult;
-import com.cyanogen.ambient.common.api.ResultCallback;
+import com.android.phone.common.incall.api.InCallQueries;
+import com.android.phone.common.nudge.api.NudgeQueries;
+import com.cyanogen.ambient.discovery.nudge.Nudge;
 import com.cyanogen.ambient.discovery.util.NudgeKey;
+import com.cyanogen.ambient.incall.InCallApi;
 import com.cyanogen.ambient.incall.extension.InCallContactInfo;
-import com.cyanogen.ambient.incall.InCallServices;
-import com.cyanogen.ambient.incall.results.InstalledPluginsResult;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
 public class InCallPluginHelper extends CallMethodHelper {
-    private static final String TAG = InCallPluginHelper.class.getSimpleName();
 
-    protected static synchronized InCallPluginHelper getInstance() {
-        if (sInstance == null) {
-            sInstance = new InCallPluginHelper();
-        }
-        return (InCallPluginHelper) sInstance;
+    public InCallPluginHelper(Context context, InCallApi api) {
+        super(context, api);
     }
 
     public static void init(Context context) {
-        InCallPluginHelper helper = getInstance();
-        helper.mContext = context;
-        helper.mClient = AmbientConnection.CLIENT.get(context);
-        helper.mInCallApi = InCallServices.getInstance();
-        helper.mMainHandler = new Handler(context.getMainLooper());
-
-        refresh();
+        InCallPluginHelper.INCALL.get(context).refresh();
     }
 
-    public static void refresh() {
-        updateCallPlugins();
-    }
-
-    public static void refreshDynamicItems() {
-        HashMap<ResultCallback, PendingResult> apiCallbacks = new HashMap<ResultCallback,
-                PendingResult>();
-        for (ComponentName cn : mCallMethodInfos.keySet()) {
-            getCallMethodAuthenticated(cn, apiCallbacks);
-            getCallMethodAccountHandle(cn, apiCallbacks);
-        }
-        executeAll(apiCallbacks);
+    @Override
+    public void onDynamicRefreshRequested(ArrayList<TypedPendingResult> queries,
+                                          ComponentName componentName) {
+        queries.add(InCallQueries.getCallMethodAuthenticated(mContext, componentName));
+        queries.add(InCallQueries.getCallMethodAccountHandle(mContext, componentName));
     }
 
     public static void refreshPendingIntents(InCallContactInfo contactInfo) {
-        for (ComponentName cn : mCallMethodInfos.keySet()) {
-            getInviteIntent(cn, contactInfo);
-            getDirectorySearchIntent(cn, contactInfo.mLookupUri);
+        // TODO: implement
+    }
+
+    @Override
+    protected void requestedModInfo(ArrayList<TypedPendingResult> queries,
+                                    ComponentName componentName) {
+
+        queries.add(InCallQueries.getCallMethodInfo(mContext, componentName));
+        queries.add(InCallQueries.getCallMethodStatus(mContext, componentName));
+        queries.add(InCallQueries.getCallMethodMimeType(mContext, componentName));
+        queries.add(InCallQueries.getCallMethodVideoCallableMimeType(mContext, componentName));
+        queries.add(InCallQueries.getCallMethodAuthenticated(mContext, componentName));
+        queries.add(InCallQueries.getLoginIntent(mContext, componentName));
+        queries.add(InCallQueries.getSettingsIntent(mContext, componentName));
+        queries.add(InCallQueries.getCreditInfo(mContext, componentName));
+        queries.add(InCallQueries.getManageCreditsIntent(mContext, componentName));
+        queries.add(InCallQueries.getDefaultDirectorySearchIntent(mContext, componentName));
+        queries.add(InCallQueries.getCallMethodImMimeType(mContext, componentName));
+
+        TypedPendingResult fragLogin = NudgeQueries.getNudgeConfig(mClient, mContext,
+                componentName,
+                NudgeKey.INCALL_CONTACT_FRAGMENT_LOGIN);
+        if (fragLogin != null) {
+            queries.add(fragLogin);
         }
+        TypedPendingResult cardLogin = NudgeQueries.getNudgeConfig(mClient, mContext, componentName,
+                NudgeKey.INCALL_CONTACT_CARD_LOGIN);
+        if (cardLogin != null) {
+            queries.add(cardLogin);
+        }
+        TypedPendingResult cardDownload = NudgeQueries.getNudgeConfig(mClient, mContext,
+                componentName, NudgeKey.INCALL_CONTACT_CARD_DOWNLOAD);
+        if (cardDownload != null) {
+            queries.add(cardDownload);
+        }
+
     }
 
-    protected static void updateCallPlugins() {
-        if (DEBUG) Log.d(TAG, "+++updateCallPlugins");
-        getInstance().mInCallApi.getInstalledPlugins(getInstance().mClient)
-                .setResultCallback(new ResultCallback<InstalledPluginsResult>() {
-                    @Override
-                    public void onResult(InstalledPluginsResult installedPluginsResult) {
-                        // got installed components
-                        mInstalledPlugins = installedPluginsResult.components;
 
-                        synchronized (mCallMethodInfos) {
-                            mCallMethodInfos.clear();
-                        }
-
-                        if (mInstalledPlugins == null || mInstalledPlugins.size() == 0) {
-                            broadcast();
-                            return;
-                        }
-
-                        HashMap<ResultCallback, PendingResult> apiCallbacks =
-                                new HashMap<ResultCallback, PendingResult>();
-                        for (ComponentName cn : mInstalledPlugins) {
-                            mCallMethodInfos.put(cn, new CallMethodInfo());
-                            getCallMethodInfo(cn, apiCallbacks);
-                            getCallMethodMimeType(cn, apiCallbacks);
-                            getCallMethodStatus(cn, apiCallbacks);
-                            getCallMethodVideoCallableMimeType(cn, apiCallbacks);
-                            getCallMethodImMimeType(cn, apiCallbacks);
-                            getCallMethodAuthenticated(cn, apiCallbacks);
-                            getLoginIntent(cn, apiCallbacks);
-                            getNudgeConfiguration(cn, NudgeKey.INCALL_CONTACT_FRAGMENT_LOGIN,
-                                    apiCallbacks);
-                            getNudgeConfiguration(cn, NudgeKey.INCALL_CONTACT_CARD_LOGIN,
-                                    apiCallbacks);
-                            getNudgeConfiguration(cn, NudgeKey.INCALL_CONTACT_CARD_DOWNLOAD,
-                                    apiCallbacks);
-                            getDefaultDirectorySearchIntent(cn, apiCallbacks);
-                            // If you add any more callbacks, be sure to update
-                            // EXPECTED_RESULT_CALLBACKS
-                            // and EXPECTED_DYNAMIC_RESULT_CALLBACKS if the callback is dynamic
-                            // with the proper count.
-                        }
-                        executeAll(apiCallbacks);
-                    }
-                });
-    }
-
-    public static Set<String> getAllPluginComponentNames() {
+    public static Set<String> getAllPluginComponentNames(Context context) {
         Set<String> names = new HashSet<String>();
-        HashMap<ComponentName, CallMethodInfo> plugins = InCallPluginHelper.getAllCallMethods();
+        HashMap<ComponentName, CallMethodInfo> plugins = INCALL.get(context).getModInfo();
         for (ComponentName cn : plugins.keySet()) {
             names.add(cn.flattenToString());
         }

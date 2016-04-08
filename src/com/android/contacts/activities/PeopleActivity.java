@@ -112,7 +112,8 @@ import com.android.contacts.util.DialogManager;
 import com.android.contactsbind.HelpUtils;
 import com.android.phone.common.incall.CallMethodHelper;
 import com.android.phone.common.incall.CallMethodInfo;
-import com.android.phone.common.incall.CallMethodUtils;
+import com.android.phone.common.incall.utils.CallMethodFilters;
+import com.android.phone.common.incall.utils.CallMethodUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -543,7 +544,7 @@ public class PeopleActivity extends ContactsActivity implements
 
     @Override
     protected void onPause() {
-        InCallPluginHelper.unsubscribe(CALL_METHOD_HELPER_SUBSCRIBER_ID);
+        InCallPluginHelper.INCALL.get(this).unsubscribe(CALL_METHOD_HELPER_SUBSCRIBER_ID);
         mOptionsMenuContactsAvailable = false;
         mProviderStatusWatcher.stop();
         super.onPause();
@@ -558,7 +559,7 @@ public class PeopleActivity extends ContactsActivity implements
         onResumeInit();
         if (InCallPluginHelper.subscribe(CALL_METHOD_HELPER_SUBSCRIBER_ID,
                 pluginsUpdatedReceiver)) {
-            InCallPluginHelper.refreshDynamicItems();
+            InCallPluginHelper.INCALL.get(this).refreshDynamicItems();
         }
     }
 
@@ -1848,10 +1849,10 @@ public class PeopleActivity extends ContactsActivity implements
         return TabState.ALL;
     }
 
-    private CallMethodHelper.CallMethodReceiver pluginsUpdatedReceiver =
-            new CallMethodHelper.CallMethodReceiver() {
+    private CallMethodHelper.ModChanged pluginsUpdatedReceiver =
+            new CallMethodHelper.ModChanged() {
                 @Override
-                public void onChanged(HashMap<ComponentName, CallMethodInfo> callMethodInfos) {
+                public void onChanged(HashMap callMethodInfos) {
                     updatePlugins(callMethodInfos);
                 }
             };
@@ -1890,7 +1891,7 @@ public class PeopleActivity extends ContactsActivity implements
     private synchronized void updatePlugins(HashMap<ComponentName, CallMethodInfo>
                                                      callMethodInfo) {
         HashMap<ComponentName, CallMethodInfo> newCmMap = (HashMap<ComponentName,
-                CallMethodInfo>) CallMethodHelper.getAllEnabledCallMethods();
+                CallMethodInfo>) CallMethodFilters.getAllEnabledCallMethods(this);
         if (DEBUG) Log.d(TAG, "updatePlugins newCmMap size:" + newCmMap.size());
         boolean updateTabs = false;
         String lastSelectedTabTag = mTabTitles.get(mActionBarAdapter.getCurrentTab()).mTag;
