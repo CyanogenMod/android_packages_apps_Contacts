@@ -66,7 +66,6 @@ public class InCallPluginInfo implements Parcelable {
         mCallMethodInfo.mLoginIconId = in.readInt();
         mTabTag = in.readString();
         mCallMethodInfo.mComponent = in.readParcelable(ComponentName.class.getClassLoader());
-        mCallMethodInfo.mNudgeComponent = in.readParcelable(ComponentName.class.getClassLoader());
         mCallMethodInfo.mDependentPackage = in.readString();
         mCallMethodInfo.mMimeType = in.readString();
         mCallMethodInfo.mImMimeType = in.readString();
@@ -86,7 +85,6 @@ public class InCallPluginInfo implements Parcelable {
         dest.writeInt(mCallMethodInfo.mLoginIconId);
         dest.writeString(mTabTag);
         dest.writeParcelable(mCallMethodInfo.mComponent, flags);
-        dest.writeParcelable(mCallMethodInfo.mNudgeComponent, flags);
         dest.writeString(mCallMethodInfo.mDependentPackage);
         dest.writeString(mCallMethodInfo.mMimeType);
         dest.writeString(mCallMethodInfo.mImMimeType);

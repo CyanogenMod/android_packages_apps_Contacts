@@ -26,30 +26,19 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.ContactsContract;
-import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
-import android.util.ArrayMap;
 import android.util.Log;
 
 import com.android.contacts.common.ContactPresenceIconUtil;
 import com.android.contacts.common.ContactStatusUtil;
-import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.Contact;
 import com.android.contacts.common.model.RawContact;
-import com.android.contacts.common.model.account.AccountType;
-import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.model.dataitem.DataItem;
 import com.android.contacts.common.util.DataStatus;
 import com.android.contacts.common.util.UriUtils;
-import com.android.phone.common.ambient.AmbientConnection;
-import com.android.phone.common.incall.CallMethodHelper;
 import com.android.phone.common.incall.CallMethodInfo;
-import com.android.phone.common.util.StartInCallCallReceiver;
-import com.cyanogen.ambient.common.api.AmbientApiClient;
-import com.cyanogen.ambient.incall.InCallServices;
+import com.android.phone.common.incall.utils.CallMethodFilters;
 import com.cyanogen.ambient.incall.extension.InCallContactInfo;
-import com.cyanogen.ambient.incall.extension.OriginCodes;
-import com.cyanogen.ambient.incall.extension.StartCallRequest;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
@@ -169,10 +158,10 @@ public class InCallPluginUtils {
         return presenceInfo;
     }
 
-    public static ArrayList<ComponentName> gatherPluginHistory() {
+    public static ArrayList<ComponentName> gatherPluginHistory(Context context) {
         ArrayList<ComponentName> cnList = new ArrayList<ComponentName>();
-        HashMap<ComponentName, CallMethodInfo> plugins = InCallPluginHelper
-                .getAllEnabledCallMethods();
+        HashMap<ComponentName, CallMethodInfo> plugins = CallMethodFilters
+                .getAllEnabledCallMethods(context);
         for (ComponentName cn : plugins.keySet()) {
             cnList.add(cn);
         }

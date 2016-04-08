@@ -32,6 +32,7 @@ import android.util.Log;
 
 import com.android.phone.common.ambient.AmbientConnection;
 import com.android.phone.common.incall.CallMethodInfo;
+import com.android.phone.common.incall.InCallPluginHelper;
 import com.cyanogen.ambient.analytics.AnalyticsServices;
 import com.cyanogen.ambient.analytics.Event;
 import com.cyanogen.ambient.incall.InCallServices;
@@ -169,7 +170,7 @@ public class InCallMetricsHelper {
             Events event = cv.containsKey(Parameters.EVENT_NAME.toCol()) ?
                     Events.valueOf(cv.getAsString(Parameters.EVENT_NAME.toCol())) :
                     Events.UNKNOWN;
-            Set<String> plugins = InCallPluginHelper.getAllPluginComponentNames();
+            Set<String> plugins = InCallPluginHelper.getAllPluginComponentNames(context);
             sendEvent(context, cat, event, getExtraFields(cat, event, cv), plugins);
         }
     }
@@ -423,8 +424,8 @@ public class InCallMetricsHelper {
                 if (!statsOptIn(context)) {
                     return;
                 }
-                HashMap<ComponentName, CallMethodInfo> plugins = InCallPluginHelper
-                        .getAllCallMethods();
+                HashMap<ComponentName, CallMethodInfo> plugins = InCallPluginHelper.INCALL.get
+                        (context).getModInfo();
                 HashMap<String, String> pluginMap = new HashMap<String, String>();
                 for (CallMethodInfo cmi : plugins.values()) {
                     if (DEBUG) {

@@ -27,7 +27,8 @@ import android.provider.CallLog.Calls;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 
-import com.android.contacts.incall.InCallPluginHelper;
+import com.android.phone.common.incall.InCallPluginHelper;
+import com.android.phone.common.incall.utils.CallMethodFilters;
 import com.google.common.annotations.VisibleForTesting;
 
 import com.android.contacts.common.util.PermissionsUtil;
@@ -72,8 +73,8 @@ public class CallLogInteractionsLoader extends AsyncTaskLoader<List<ContactInter
         }
         // add plugin entries
         if (InCallPluginHelper.infoReady()) {
-            HashMap<ComponentName, CallMethodInfo> inCallPlugins = InCallPluginHelper
-                    .getAllEnabledCallMethods();
+            HashMap<ComponentName, CallMethodInfo> inCallPlugins = CallMethodFilters
+                    .getAllEnabledCallMethods((getContext()));
             if (inCallPlugins != null) {
                 for (ComponentName cn : inCallPlugins.keySet()) {
                     List<String> accountList = mPluginAccountsMap.get(cn);
@@ -172,8 +173,8 @@ public class CallLogInteractionsLoader extends AsyncTaskLoader<List<ContactInter
                 {
                     // PSTN dialed through a plugin
                     if (cmi == null) {
-                        cmi = InCallPluginHelper.getCallMethod(ComponentName.unflattenFromString
-                                (interaction.getPluginPkgName()));
+                        cmi = InCallPluginHelper.INCALL.get(mContext).getModIfExists(ComponentName
+                                .unflattenFromString(interaction.getPluginPkgName()));
                     }
                     // No matching plugin, skip
                     if (cmi == null) continue;
