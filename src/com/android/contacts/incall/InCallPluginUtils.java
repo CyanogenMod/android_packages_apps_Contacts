@@ -44,7 +44,8 @@ import com.android.contacts.common.util.UriUtils;
 import com.android.phone.common.ambient.AmbientConnection;
 import com.android.phone.common.incall.CallMethodHelper;
 import com.android.phone.common.incall.CallMethodInfo;
-import com.android.phone.common.util.StartInCallCallReceiver;
+import com.android.phone.common.incall.utils.CallMethodFilters;
+import com.android.phone.common.incall.utils.CallMethodUtils;
 import com.cyanogen.ambient.common.api.AmbientApiClient;
 import com.cyanogen.ambient.incall.InCallServices;
 import com.cyanogen.ambient.incall.extension.InCallContactInfo;
@@ -169,10 +170,10 @@ public class InCallPluginUtils {
         return presenceInfo;
     }
 
-    public static ArrayList<ComponentName> gatherPluginHistory() {
+    public static ArrayList<ComponentName> gatherPluginHistory(Context context) {
         ArrayList<ComponentName> cnList = new ArrayList<ComponentName>();
-        HashMap<ComponentName, CallMethodInfo> plugins = InCallPluginHelper
-                .getAllEnabledCallMethods();
+        HashMap<ComponentName, CallMethodInfo> plugins = CallMethodFilters
+                .getAllEnabledCallMethods(context);
         for (ComponentName cn : plugins.keySet()) {
             cnList.add(cn);
         }
