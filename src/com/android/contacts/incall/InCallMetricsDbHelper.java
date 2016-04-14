@@ -274,7 +274,7 @@ public class InCallMetricsDbHelper extends SQLiteOpenHelper {
             Log.e(TAG, "Malformed database version..recreating database");
         }
 
-        if (oldVersion <= newVersion) {
+        if (oldVersion < newVersion) {
             setupTables(db);
         }
     }
