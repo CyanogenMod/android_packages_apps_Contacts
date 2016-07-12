@@ -535,6 +535,11 @@ public class QuickContactActivity extends ContactsActivity implements
     };
 
     @Override
+    public void onBlockCancelled() {
+        // stub
+    }
+
+    @Override
     public void onBlockSelected(boolean notifyLookupProvider) {
         mBlockContactHelper.blockContactAsync(notifyLookupProvider);
     }
