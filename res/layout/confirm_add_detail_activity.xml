@@ -44,7 +44,7 @@
             android:layout_alignRight="@id/photo"
             android:layout_alignStart="@id/photo"
             android:layout_alignEnd="@id/photo"
-            android:background="#7F000000" />
+            android:background="@color/photo_text_bar_background" />
 
         <ImageButton
             android:id="@+id/open_details_button"
@@ -81,7 +81,7 @@
                 android:paddingLeft="8dip"
                 android:paddingStart="8dip"
                 android:gravity="center_vertical"
-                android:textColor="@android:color/white"
+                android:textColor="@color/add_detail_name_text"
                 android:textSize="16sp"
                 android:singleLine="true" />
 
@@ -94,7 +94,7 @@
                 android:paddingStart="8dip"
                 android:gravity="center_vertical"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@android:color/white"
+                android:textColor="@color/add_detail_extra_info_text"
                 android:singleLine="true"
                 android:paddingBottom="4dip"
                 android:visibility="gone" />
