@@ -437,7 +437,7 @@
 
     <!-- Preferences: Dialer -->
     <string name="title_last_dialled">Anruftaste holt letzte Nummer</string>
-    <string name="summary_last_dialled">Letzt gewählte Nummer holen, solange keine Eingabe</string>
+    <string name="summary_last_dialled">Letzte gewählte Nummer holen, solange keine Eingabe</string>
     <string name="title_return_to_dialer">Zum Telefon nach Anruf</string>
     <string name="title_vm_button">Linke Aktionstaste (LAT)</string>
     <string name="title_vm_handler">Mailbox Verwaltung</string>
